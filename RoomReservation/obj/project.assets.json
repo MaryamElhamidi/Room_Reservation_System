@@ -18447,11 +18447,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Yammy/Desktop/RoomReservation/RoomReservation/RoomReservation.csproj",
+      "projectUniqueName": "/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/RoomReservation.csproj",
       "projectName": "RoomReservation",
-      "projectPath": "/Users/Yammy/Desktop/RoomReservation/RoomReservation/RoomReservation.csproj",
+      "projectPath": "/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/RoomReservation.csproj",
       "packagesPath": "/Users/Yammy/.nuget/packages/",
-      "outputPath": "/Users/Yammy/Desktop/RoomReservation/RoomReservation/obj/",
+      "outputPath": "/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [

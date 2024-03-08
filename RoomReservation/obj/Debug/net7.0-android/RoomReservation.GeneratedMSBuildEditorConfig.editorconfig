@@ -12,33 +12,33 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = RoomReservation
-build_property.ProjectDir = /Users/Yammy/Desktop/RoomReservation/RoomReservation/
+build_property.ProjectDir = /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/
 
-[/Users/Yammy/Desktop/RoomReservation/RoomReservation/App.xaml]
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[/Users/Yammy/Desktop/RoomReservation/RoomReservation/AppShell.xaml]
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[/Users/Yammy/Desktop/RoomReservation/RoomReservation/MainPage.xaml]
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[/Users/Yammy/Desktop/RoomReservation/RoomReservation/Resources/Styles/Colors.xaml]
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
 
-[/Users/Yammy/Desktop/RoomReservation/RoomReservation/Resources/Styles/Styles.xaml]
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml

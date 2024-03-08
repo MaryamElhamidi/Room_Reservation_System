@@ -55,4 +55,18 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\Images\auditorium_icon.svg" />
+	  <None Remove="Resources\Images\banquet_icon.svg" />
+	  <None Remove="Resources\Images\classroom_icon.svg" />
+	  <None Remove="Resources\Images\hollowsquare_icon.svg" />
+	  <None Remove="Resources\Images\ushape_icon.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\auditorium_icon.svg" />
+	  <BundleResource Include="Resources\Images\banquet_icon.svg" />
+	  <BundleResource Include="Resources\Images\classroom_icon.svg" />
+	  <BundleResource Include="Resources\Images\hollowsquare_icon.svg" />
+	  <BundleResource Include="Resources\Images\ushape_icon.svg" />
+	</ItemGroup>
 </Project>
