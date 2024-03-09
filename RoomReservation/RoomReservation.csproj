@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Images\classroom_icon.svg" />
 	  <None Remove="Resources\Images\hollowsquare_icon.svg" />
 	  <None Remove="Resources\Images\ushape_icon.svg" />
+	  <None Remove="BusinessLogic\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\auditorium_icon.svg" />
@@ -68,5 +69,8 @@
 	  <BundleResource Include="Resources\Images\classroom_icon.svg" />
 	  <BundleResource Include="Resources\Images\hollowsquare_icon.svg" />
 	  <BundleResource Include="Resources\Images\ushape_icon.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="BusinessLogic\" />
 	</ItemGroup>
 </Project>
