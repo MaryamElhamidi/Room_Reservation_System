@@ -1,20 +1,16 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/Pages/PickRoomPage.xaml">
+    <Files>
+      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" Line="4" Column="1" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="13" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RoomReservation" selected="True">
+          <Node name="RoomReservation">
             <Node name="RoomReservation">
-              <Node name="Resources" expanded="True">
-                <Node name="Images" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="PickRoomPage.xaml" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -22,4 +18,12 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

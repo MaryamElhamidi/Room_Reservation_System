@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RoomReservation.Pages.PickRoomPage"
+             Title="Pick Meeting Room">
+    <StackLayout>
+        <SearchBar Placeholder="Search rooms..." />
+        <ListView x:Name="RoomsList" SelectionMode="Single">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding RoomName}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Add Reservation" Clicked="AddReservation_Clicked" />
+        <Button Text="View Requests" Clicked="ViewRequests_Clicked" />
+    </StackLayout>
+</ContentPage>

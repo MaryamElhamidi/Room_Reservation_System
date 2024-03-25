@@ -90,7 +90,7 @@ public class ReservationRequest
         StartDateTime = startDateTime;
         EndDateTime = endDateTime;
         ParticipantCount = participantCount;
-        Status = RequestStatus.Pending;
+        //Status = RequestStatus.Pending;
         AssociatedRoom = associatedRoom;
 
         RequestID = GenerateNextRequestID();

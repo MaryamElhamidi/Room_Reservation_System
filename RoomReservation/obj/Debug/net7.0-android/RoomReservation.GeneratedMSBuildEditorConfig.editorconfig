@@ -32,6 +32,24 @@ build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.MainPage.x
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Pages/AddRequestPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Pages.AddRequestPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/AddRequestPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/AddRequestPage.xaml
+
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Pages/PickRoomPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Pages.PickRoomPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/PickRoomPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/PickRoomPage.xaml
+
+[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Pages/RequestList.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Pages.RequestList.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages/RequestList.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages/RequestList.xaml
+
 [/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Resources.Styles.Colors.xaml
