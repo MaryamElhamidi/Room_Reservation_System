@@ -1,108 +1,51 @@
 ﻿using System;
 using RoomReservation.BusinessLogic;
 
+/// <summary>
+/// Represents a reservation request for a meeting room.
+/// </summary>
 public class ReservationRequest
 {
+    private static int _nextId = 1;
+    private string _requestedBy;
+    private string _description;
+    private DateTime _startDateTime;
+    private DateTime _endDateTime;
+    private int _participantCount;
     public int RequestID { get; private set; }
 
-    private static int requestCounter = 0; // Static counter for generating request IDs.
-
+    /// <summary>
+    /// The name of the person who posted the request. Cannot be blank.
+    /// </summary>
     public string RequestedBy
     {
         get => _requestedBy;
-        set
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentException("RequestedBy cannot be blank.");
-            }
-            _requestedBy = value;
-        }
+        set => _requestedBy = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Requested by name cannot be blank.");
     }
-    private string _requestedBy;
 
+    /// <summary>
+    /// A description of the purpose of the meeting. Cannot be blank.
+    /// </summary>
     public string Description
     {
         get => _description;
-        set
-        {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new ArgumentException("Description cannot be blank.");
-            }
-            _description = value;
-        }
+        set => _description = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Description cannot be blank.");
     }
-    private string _description;
 
+    /// <summary>
+    /// The start date and time of the meeting. Must be in the future.
+    /// </summary>
     public DateTime StartDateTime
     {
         get => _startDateTime;
-        set
-        {
-            if (value <= DateTime.Now)
-            {
-                throw new ArgumentException("StartDateTime must be a future date.");
-            }
-            _startDateTime = value;
-        }
+        set => _startDateTime = value > DateTime.Now ? value : throw new ArgumentException("Start date time must be in the future.");
     }
-    private DateTime _startDateTime;
 
+    /// <summary>
+    /// The date and time when the meeting is scheduled to end. Must be greater than the start date time.
+    /// </summary>
     public DateTime EndDateTime
     {
         get => _endDateTime;
-        set
-        {
-            if (value <= StartDateTime)
-            {
-                throw new ArgumentException("EndDateTime must be greater than StartDateTime.");
-            }
-            _endDateTime = value;
-        }
-    }
-    private DateTime _endDateTime;
-
-    public int ParticipantCount
-    {
-        get => _participantCount;
-        set
-        {
-            if (value <= 0)
-            {
-                throw new ArgumentException("ParticipantCount must be greater than 0.");
-            }
-            _participantCount = value;
-        }
-    }
-    private int _participantCount;
-
-    public RequestStatus Status { get; set; }
-
-    public MeetingRoom AssociatedRoom { get; set; }
-
-
- 
-    public ReservationRequest(string requestedBy, string description, DateTime startDateTime, DateTime endDateTime, int participantCount, MeetingRoom associatedRoom)
-    {
-        RequestedBy = requestedBy;
-        Description = description;
-        StartDateTime = startDateTime;
-        EndDateTime = endDateTime;
-        ParticipantCount = participantCount;
-        //Status = RequestStatus.Pending;
-        AssociatedRoom = associatedRoom;
-
-        RequestID = GenerateNextRequestID();
-    }
-
-   
-
-    private int GenerateNextRequestID()
-    {
-        return ++requestCounter;
-
-    }
-
-}
+        set => _endDateTime = value > _startDateTime ?
 

@@ -22,12 +22,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.AppShell.x
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/MainPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
 [/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/Pages/AddRequestPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = RoomReservation.Pages.AddRequestPage.xaml

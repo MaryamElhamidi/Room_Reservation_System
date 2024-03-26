@@ -1,17 +1,24 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/Pages/PickRoomPage.xaml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/AppShell.xaml">
     <Files>
-      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" Line="4" Column="1" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="13" Column="1" />
+      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" />
+      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" />
+      <File FileName="RoomReservation/Pages/RequestList.xaml" />
+      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" />
+      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" />
+      <File FileName="RoomReservation/AppShell.xaml" Line="13" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RoomReservation">
+          <Node name="RoomReservation" expanded="True">
             <Node name="RoomReservation">
-              <Node name="Pages" expanded="True">
-                <Node name="PickRoomPage.xaml" selected="True" />
-              </Node>
+              <Node name="BusinessLogic" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="AppShell.xaml" selected="True" />
             </Node>
           </Node>
         </State>

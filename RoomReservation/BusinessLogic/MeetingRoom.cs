@@ -1,50 +1,58 @@
 ﻿using System;
 namespace RoomReservation.BusinessLogic
 {
-
-
+    /// <summary>
+    /// Represents a meeting room.
+    /// </summary>
     public class MeetingRoom
     {
-        public int Id { get; set; }
-        public string RoomNumber { get; set; }
-        public int SeatingCapacity { get; set; }
-        public RoomLayoutType RoomLayoutType { get; set; }
-        public string RoomImageFileName { get; set; }
+        private string _roomNumber;
+        private int _seatingCapacity;
+        private string _roomImageFileName;
 
-        public string RoomTypeIcon
+        /// <summary>
+        /// The room number. Must be a non-empty string.
+        /// </summary>
+        public string RoomNumber
         {
-            get
-            {
-                string iconName = "";
-                switch (RoomLayoutType)
-                {
-                    case RoomLayoutType.HollowSquare:
-                        iconName = "hollowsquare_icon.png";
-                        break;
-                    case RoomLayoutType.UShape:
-                        iconName = "ushape_icon.png";
-                        break;
-                    case RoomLayoutType.Classroom:
-                        iconName = "classroom_icon.png";
-                        break;
-                    case RoomLayoutType.Auditorium:
-                        iconName = "auditorium_icon.png";
-                        break;
-                    default:
-                        iconName = "default_icon.png";
-                        break;
-                }
-                return iconName;
-            }
+            get => _roomNumber;
+            set => _roomNumber = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Room number is required.");
         }
 
-        public MeetingRoom(int id, string roomNumber, int capacity, RoomLayoutType layout, string imageFileName)
+        /// <summary>
+        /// The seating capacity of the room. Must be greater than 0.
+        /// </summary>
+        public int SeatingCapacity
         {
-            Id = id;
+            get => _seatingCapacity;
+            set => _seatingCapacity = value > 0 ? value : throw new ArgumentException("Seating capacity must be greater than 0.");
+        }
+
+        /// <summary>
+        /// The room's layout type.
+        /// </summary>
+        public RoomLayoutType RoomLayoutType { get; set; }
+
+        /// <summary>
+        /// The name of the file containing the actual picture of the room. Must be a non-empty string.
+        /// </summary>
+        public string RoomImageFileName
+        {
+            get => _roomImageFileName;
+            set => _roomImageFileName = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Room image file name is required.");
+        }
+
+        /// <summary>
+        /// A computed property that evaluates to the name of the image icon file representing the RoomLayoutType.
+        /// </summary>
+        public string RoomTypeIcon => $"{RoomLayoutType.ToString().ToLower()}_icon.png";
+
+        public MeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType roomLayoutType, string roomImageFileName)
+        {
             RoomNumber = roomNumber;
-            SeatingCapacity = capacity;
-            RoomLayoutType = layout;
-            RoomImageFileName = imageFileName;
+            SeatingCapacity = seatingCapacity;
+            RoomLayoutType = roomLayoutType;
+            RoomImageFileName = roomImageFileName;
         }
     }
 }
