@@ -1,9 +1,6 @@
 ﻿using System;
 namespace RoomReservation.BusinessLogic
 {
-    /// <summary>
-    /// Represents a meeting room.
-    /// </summary>
     public class MeetingRoom
     {
         private string _roomNumber;
@@ -31,7 +28,7 @@ namespace RoomReservation.BusinessLogic
         /// <summary>
         /// The room's layout type.
         /// </summary>
-        public RoomLayoutType RoomLayoutType { get; set; }
+        public RoomLayoutType RoomLayoutType { get; private set; }
 
         /// <summary>
         /// The name of the file containing the actual picture of the room. Must be a non-empty string.
