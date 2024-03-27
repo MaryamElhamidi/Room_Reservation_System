@@ -6,46 +6,58 @@ using RoomReservation.BusinessLogic;
 /// </summary>
 public class ReservationRequest
 {
-    private static int _nextId = 1;
-    private string _requestedBy;
-    private string _description;
-    private DateTime _startDateTime;
-    private DateTime _endDateTime;
-    private int _participantCount;
-    public int RequestID { get; private set; }
+    // Public properties with unconventional naming.
+    public int _requestID { get; set; }
+    public string _requestedBy { get; set; }
+    public string _description { get; set; }
+    public DateTime _meetingDate { get; set; }
+    public string _meetingPurpose { get; set; }
+    public TimeSpan _startTime { get; set; }
+    public TimeSpan _endTime { get; set; }
+    public int _participantCount { get; set; }
+    public string _roomNumber { get; set; }
+    public RequestStatus _status { get; set; } = RequestStatus.Pending; // Default value
 
     /// <summary>
-    /// The name of the person who posted the request. Cannot be blank.
+    /// Constructor to initialize a new instance of the ReservationRequest class.
     /// </summary>
-    public string RequestedBy
+    public ReservationRequest(int requestID, string requestedBy, string meetingPurpose, string description,
+        DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, string roomNumber)
     {
-        get => _requestedBy;
-        set => _requestedBy = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Requested by name cannot be blank.");
+        _requestID = requestID;
+        _requestedBy = requestedBy;
+        _meetingPurpose = meetingPurpose;
+        _description = description;
+        _meetingDate = meetingDate;
+        _startTime = startTime;
+        _endTime = endTime;
+        _participantCount = participantCount;
+        _roomNumber = roomNumber;
     }
 
     /// <summary>
-    /// A description of the purpose of the meeting. Cannot be blank.
+    /// Updates the status of the reservation request.
     /// </summary>
-    public string Description
+    /// <param name="newStatus">The new status to be set.</param>
+    public void UpdateRequestStatus(RequestStatus newStatus)
     {
-        get => _description;
-        set => _description = !string.IsNullOrWhiteSpace(value) ? value : throw new ArgumentException("Description cannot be blank.");
+        _status = newStatus;
     }
 
     /// <summary>
-    /// The start date and time of the meeting. Must be in the future.
+    /// Provides a string representation of the reservation request, suitable for logging or debugging.
     /// </summary>
-    public DateTime StartDateTime
+    /// <returns>A string detailing the reservation request's properties.</returns>
+    public override string ToString()
     {
-        get => _startDateTime;
-        set => _startDateTime = value > DateTime.Now ? value : throw new ArgumentException("Start date time must be in the future.");
+        return $"RequestID: {_requestID}, " +
+               $"Room: {_roomNumber}, " +
+               $"RequestedBy: {_requestedBy}, " +
+               $"Description: {_description}, " +
+               $"MeetingDate: {_meetingDate.ToString("yyyy-MM-dd")}, " +
+               $"StartTime: {_startTime.ToString(@"hh\:mm")}, " +
+               $"EndTime: {_endTime.ToString(@"hh\:mm")}, " +
+               $"ParticipantCount: {_participantCount}, " +
+               $"Status: {_status}";
     }
-
-    /// <summary>
-    /// The date and time when the meeting is scheduled to end. Must be greater than the start date time.
-    /// </summary>
-    public DateTime EndDateTime
-    {
-        get => _endDateTime;
-        set => _endDateTime = value > _startDateTime ?
-
+}
