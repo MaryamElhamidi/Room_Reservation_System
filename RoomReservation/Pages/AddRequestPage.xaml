@@ -4,17 +4,40 @@
              x:Class="RoomReservation.Pages.AddRequestPage"
              Title="AddRequestPage">
 
-    <StackLayout Padding="10">
-        <Label Text="Room:" />
-        <Picker x:Name="RoomPicker" ItemDisplayBinding="{Binding Name}" />
-        <Label Text="Start Date:" />
-        <DatePicker x:Name="StartDatePicker" />
-        <Label Text="End Date:" />
-        <DatePicker x:Name="EndDatePicker" />
-        <Label Text="Purpose:" />
-        <Entry x:Name="PurposeEntry" Placeholder="Purpose of meeting" />
-        <Button Text="Submit" Clicked="Submit_Clicked" />
-        <Button Text="Cancel" Clicked="Cancel_Clicked" />
-    </StackLayout>
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+
+            <Label Text="Your Name:" />
+            <Entry x:Name="UserNameEntry" Placeholder="Enter your name" />
+
+            <Label Text="Purpose of Meeting:" />
+            <Entry x:Name="MeetingPurposeEntry" Placeholder="Enter meeting purpose" />
+
+            <Label Text="Meeting Date:" />
+            <DatePicker x:Name="MeetingDatePicker" />
+
+            <Label Text="Start Time (HH:MM AM/PM):" />
+            <TimePicker x:Name="StartTimePicker" />
+
+            <Label Text="End Time (HH:MM AM/PM):" />
+            <TimePicker x:Name="EndTimePicker" />
+
+            <Label Text="Participant Count:" />
+            <Entry x:Name="ParticipantCountEntry" Placeholder="Enter number of participants" Keyboard="Numeric"/>
+
+            <Image x:Name="SelectedRoomType" Aspect="AspectFit" HeightRequest="200"/>
+
+            <Label Text="Selected Room:" />
+            <Label x:Name="SelectedRoomLabel" Text="Room Details" FontAttributes="Bold" />
+
+
+            <!-- Separate layout for buttons, ensuring they're visually distinct -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" VerticalOptions="EndAndExpand">
+            <Button Text="Add Request" Clicked="OnAddRequestClicked" />
+            <Button Text="Back to Rooms" Clicked="OnBackToRoomsClicked" />
+        </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
 

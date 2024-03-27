@@ -3,16 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomReservation.Pages.PickRoomPage"
              Title="Pick Meeting Room">
-    <StackLayout>
-        <SearchBar Placeholder="Search rooms..." />
-        <ListView x:Name="RoomsList" SelectionMode="Single">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:LayoutToIconConverter x:Key="layoutToIconConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- Main layout container -->
+    <StackLayout Padding="10" Spacing="10">
+        <!-- Room Image -->
+        <Image x:Name="RoomImage" Aspect="AspectFit" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+
+        <!-- ListView for rooms -->
+        <ListView x:Name="RoomsListView"
+                  SelectedItem="{Binding SelectedRoom}"
+                  ItemSelected="RoomsListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding RoomName}" />
+                    <ViewCell>
+                        <Grid Padding="2" ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
+                            <!-- Icon based on LayoutType -->
+                            <Image Source="{Binding LayoutType, Converter={StaticResource layoutToIconConverter}}" 
+                                   Grid.Column="0" Grid.RowSpan="2" 
+                                   VerticalOptions="Center" 
+                                   WidthRequest="40" HeightRequest="40" />
+                            <!-- Room details -->
+                            <Label Text="{Binding RoomNumber}" 
+                                   Grid.Column="1" Grid.Row="0" 
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}" 
+                                   Grid.Column="1" Grid.Row="1" />
+                            <Label Text="{Binding LayoutType}" 
+                                   Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                                   VerticalOptions="Center" HorizontalOptions="End" />
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Add Reservation" Clicked="AddReservation_Clicked" />
-        <Button Text="View Requests" Clicked="ViewRequests_Clicked" />
-    </StackLayout>
-</ContentPage>
+
+        <!-- Separate layout for buttons, ensuring they're visually distinct -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+            <Button Text="Add Request" Clicked="AddRequestButton_Clicked" />
+            <Button Text="View Requests" Clicked="ViewRequestsButton_Clicked" />
+        </StackLayout>
+    </StackLayout></ContentPage>
