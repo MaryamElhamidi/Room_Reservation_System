@@ -4,40 +4,84 @@
              x:Class="RoomReservation.Pages.AddRequestPage"
              Title="AddRequestPage">
 
-    <ContentPage.Content>
-        <StackLayout Padding="20">
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="4">
+            <!-- Title -->
+            <Label Text="Add Reservation Request"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
 
-            <Label Text="Your Name:" />
-            <Entry x:Name="UserNameEntry" Placeholder="Enter your name" />
+            <!-- Image and Room Details in a Grid -->
+            <Grid ColumnDefinitions="Auto,*"
+                 RowDefinitions="200"      
+                  VerticalOptions="Start"  
+                  HorizontalOptions="FillAndExpand"> 
+                <!-- Image -->
+                <Image Grid.Column="0"
+                       x:Name="SelectedRoomImage"
+                       Source="room_image.jpg"
+                       Aspect="AspectFit"
+                       WidthRequest="200" 
+                       HeightRequest="200"
+                       HorizontalOptions="Start"
+                       Margin="0,0,10,0"/>
 
-            <Label Text="Purpose of Meeting:" />
-            <Entry x:Name="MeetingPurposeEntry" Placeholder="Enter meeting purpose" />
+                <!-- Room Details -->
+                <StackLayout Grid.Column="1"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             Margin="0,0,0,0">
+                    <Label x:Name="SelectedRoomLabel"
+                           Text="A102"
+                           FontAttributes="Bold"
+                           FontSize="Medium" />
+                    <Label Text="Layout: HollowSquare"
+                           FontSize="Small" />
+                    <Label Text="Capacity: 20"
+                           FontSize="Small" />
+                </StackLayout>
+            </Grid>
 
-            <Label Text="Meeting Date:" />
-            <DatePicker x:Name="MeetingDatePicker" />
+            <!-- Form fields -->
+            <Label Text="Requested by" />
+            <Entry x:Name="UserNameEntry"
+                   Placeholder="Your name" />
 
-            <Label Text="Start Time (HH:MM AM/PM):" />
-            <TimePicker x:Name="StartTimePicker" />
+            <Label Text="Description" />
+            <Editor x:Name="MeetingPurposeEntry"
+                    HeightRequest="50"
+                    AutoSize="TextChanges"/>
 
-            <Label Text="End Time (HH:MM AM/PM):" />
-            <TimePicker x:Name="EndTimePicker" />
+            <Label Text="Meeting Date" />
+            <DatePicker x:Name="MeetingDatePicker"
+                        Date="{Binding MeetingDate}" />
 
-            <Label Text="Participant Count:" />
-            <Entry x:Name="ParticipantCountEntry" Placeholder="Enter number of participants" Keyboard="Numeric"/>
+            <Label Text="Start Time" />
+            <TimePicker x:Name="StartTimePicker"
+                        Time="{Binding StartTime}" />
 
-            <Image x:Name="SelectedRoomType" Aspect="AspectFit" HeightRequest="200"/>
+            <Label Text="End Time" />
+            <TimePicker x:Name="EndTimePicker"
+                        Time="{Binding EndTime}" />
 
-            <Label Text="Selected Room:" />
-            <Label x:Name="SelectedRoomLabel" Text="Room Details" FontAttributes="Bold" />
+            <Label Text="Participant Count" />
+            <Entry x:Name="ParticipantCountEntry"
+                   Keyboard="Numeric"
+                   Placeholder="Number of participants" />
 
-
-            <!-- Separate layout for buttons, ensuring they're visually distinct -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" VerticalOptions="EndAndExpand">
-            <Button Text="Add Request" Clicked="OnAddRequestClicked" />
-            <Button Text="Back to Rooms" Clicked="OnBackToRoomsClicked" />
+            <!-- Buttons next to each other -->
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         Spacing="10">
+                <Button Text="Add Request"
+                        Clicked="OnAddRequestClicked"
+                        HorizontalOptions="FillAndExpand" />
+                <Button Text="Back to Rooms"
+                        Clicked="OnBackToRoomsClicked"
+                        HorizontalOptions="FillAndExpand" />
+            </StackLayout>
         </StackLayout>
-            
-        </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>
-

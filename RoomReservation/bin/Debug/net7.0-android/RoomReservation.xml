@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RoomReservation</name>
+    </assembly>
+    <members>
+        <member name="T:RoomReservation.BusinessLogic.RoomLayoutType">
+            <summary>
+            Represents the layout type of a meeting room.
+            </summary>
+        </member>
+    </members>
+</doc>

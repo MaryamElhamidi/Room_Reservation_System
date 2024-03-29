@@ -1,28 +1,26 @@
 ﻿using RoomReservation.BusinessLogic;
-
+using System;
 namespace RoomReservation.Pages;
 
 public partial class AddRequestPage : ContentPage
 {
     private MeetingRoom _selectedRoom;
 
-    public AddRequestPage(MeetingRoom selectedRoom) // Fix parameter name to avoid confusion
+    public AddRequestPage(MeetingRoom selectedRoom)
     {
         InitializeComponent();
-        _selectedRoom = selectedRoom; // Correct assignment
+        _selectedRoom = selectedRoom;
         DisplaySelectedRoomDetails();
     }
 
     private void DisplaySelectedRoomDetails()
     {
-        // Update your UI to display selected room details
-        SelectedRoomLabel.Text = $"Room {_selectedRoom.RoomNumber}: {_selectedRoom.SeatingCapacity} Seats";
-        SelectedRoomType.Source = ImageSource.FromFile(_selectedRoom.RoomImageFileName);
+        SelectedRoomLabel.Text = $"Room {_selectedRoom.RoomNumber}";
+        SelectedRoomImage.Source = ImageSource.FromFile(_selectedRoom.RoomImageFileName);
     }
 
     private async void OnAddRequestClicked(object sender, EventArgs e)
     {
-        // Input validation checks
         if (string.IsNullOrWhiteSpace(UserNameEntry.Text) ||
             string.IsNullOrWhiteSpace(MeetingPurposeEntry.Text) ||
             !int.TryParse(ParticipantCountEntry.Text, out int participantCount) ||
@@ -32,33 +30,30 @@ public partial class AddRequestPage : ContentPage
             return;
         }
 
-        if (participantCount > _selectedRoom.SeatingCapacity)
+        if (participantCount >= _selectedRoom.SeatingCapacity)
         {
             await DisplayAlert("Error", "The number of participants exceeds the room's capacity.", "OK");
             return;
         }
 
-        int request = GenerateUniqueRequestId();
+        int requestId = GenerateUniqueRequestId();
 
-        // Convert TimePicker TimeSpans to DateTime to use for formatting to string with AM/PM
         DateTime startTime = DateTime.Today.Add(StartTimePicker.Time);
         DateTime endTime = DateTime.Today.Add(EndTimePicker.Time);
 
-        // Now format it with AM/PM
         string formattedStartTime = startTime.ToString("hh:mm tt");
         string formattedEndTime = endTime.ToString("hh:mm tt");
 
-        // Create a new reservation request
         var success = App.ReservationManager.AddReservationRequest(
-            request,
-            UserNameEntry.Text, // requestedBy
-            MeetingPurposeEntry.Text, // meetingPurpose
-            MeetingPurposeEntry.Text, // Assuming this is the new 'description' parameter
-            MeetingDatePicker.Date, // meetingDate
-            StartTimePicker.Time, // startTime as TimeSpan
-            EndTimePicker.Time, // endTime as TimeSpan
-            participantCount, // participantCount
-            _selectedRoom.RoomNumber // roomNumber
+            requestId,
+            UserNameEntry.Text,
+            MeetingPurposeEntry.Text,
+            MeetingPurposeEntry.Text,
+            MeetingDatePicker.Date,
+            StartTimePicker.Time,
+            EndTimePicker.Time,
+            participantCount,
+            _selectedRoom.RoomNumber
         );
 
         if (success)
@@ -67,8 +62,8 @@ public partial class AddRequestPage : ContentPage
             $"Your reservation request has been successfully added.\n\n" +
             $"Start Time: {formattedStartTime}\n" +
             $"End Time: {formattedEndTime}\n" +
-            $"Request ID: {request}", "OK");
-            await Navigation.PopAsync(); // Navigate back
+            $"Request ID: {requestId}", "OK");
+            await Navigation.PopAsync();
         }
         else
         {
@@ -83,6 +78,6 @@ public partial class AddRequestPage : ContentPage
 
     private async void OnBackToRoomsClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync(); // Navigate back
+        await Navigation.PopAsync();
     }
 }

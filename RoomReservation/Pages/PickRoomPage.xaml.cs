@@ -5,7 +5,7 @@ namespace RoomReservation.Pages;
 
 public partial class PickRoomPage : ContentPage
 {
-    private MeetingRoom _selectedRoom;
+    private MeetingRoom MeetingRoom;
 
     public PickRoomPage()
     {
@@ -20,32 +20,32 @@ public partial class PickRoomPage : ContentPage
 
     private void RoomsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        _selectedRoom = e.SelectedItem as MeetingRoom;
-        if (_selectedRoom != null)
+        MeetingRoom = e.SelectedItem as MeetingRoom;
+        if (MeetingRoom != null)
         {
-            RoomImage.Source = _selectedRoom.RoomImageFileName;
+            RoomImage.Source = MeetingRoom.RoomImageFileName;
         }
     }
 
     private async void AddRequestButton_Clicked(object sender, EventArgs e)
     {
-        if (_selectedRoom == null)
+        if (MeetingRoom == null)
         {
             await DisplayAlert("Error", "Please select a room first.", "OK");
             return;
         }
 
-        await Navigation.PushAsync(new AddRequestPage(_selectedRoom));
+        await Navigation.PushAsync(new AddRequestPage(MeetingRoom));
     }
 
     private async void ViewRequestsButton_Clicked(object sender, EventArgs e)
     {
-        if (_selectedRoom == null)
+        if (MeetingRoom == null)
         {
             await DisplayAlert("Error", "Please select a room first.", "OK");
             return;
         }
 
-        await Navigation.PushAsync(new ViewRequestPage(_selectedRoom));
+        await Navigation.PushAsync(new ViewRequestPage(MeetingRoom));
     }
 }

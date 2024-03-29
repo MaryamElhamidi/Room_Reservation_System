@@ -1,39 +1,36 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/Pages/PickRoomPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/RequestStatus.cs">
     <Files>
       <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="7" Column="57" />
-      <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" />
-      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" Line="1" Column="1" />
-      <File FileName="RoomReservation/Pages/RequestList.xaml" />
-      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" />
-      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" />
-      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" Line="163" Column="1" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" Line="6" Column="17" />
+      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" />
+      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" Line="13" Column="18" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" Line="7" Column="40" />
       <File FileName="RoomReservation/AppShell.xaml" />
-      <File FileName="RoomReservation/BusinessLogic/LayoutToIconConvertor.cs" />
       <File FileName="RoomReservation/Pages/AddRequestPage.xaml.cs" />
       <File FileName="RoomReservation/App.xaml" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" Line="18" Column="56" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" />
+      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml" />
+      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml.cs" Line="68" Column="109" />
+      <File FileName="RoomReservation/MauiProgram.cs" />
+      <File FileName="RoomReservation/AppShell.xaml.cs" Line="1" Column="1" />
+      <File FileName="RoomReservation/App.xaml.cs" Line="12" Column="6" />
+      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" Line="4" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RoomReservation">
-            <Node name="RoomReservation">
+          <Node name="RoomReservation" expanded="True">
+            <Node name="RoomReservation" expanded="True">
               <Node name="BusinessLogic" expanded="True" />
-              <Node name="Pages">
-                <Node name="AddRequestPage.xaml" expanded="True" />
-                <Node name="PickRoomPage.xaml" expanded="True">
-                  <Node name="PickRoomPage.xaml.cs" selected="True" />
-                </Node>
+              <Node name="Pages" expanded="True">
+                <Node name="ViewRequestsPage.xaml" expanded="True" />
               </Node>
+              <Node name="Resources" expanded="True" />
+              <Node name="App.xaml" expanded="True" />
+              <Node name="AppShell.xaml" expanded="True" />
+              <Node name="RequestStatus.cs" selected="True" />
             </Node>
           </Node>
         </State>
@@ -41,4 +38,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="Android.pixel_5_-_api_33" />
+  <MultiItemStartupConfigurations />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

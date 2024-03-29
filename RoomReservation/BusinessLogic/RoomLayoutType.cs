@@ -9,6 +9,7 @@ namespace RoomReservation.BusinessLogic
         HollowSquare,
         UShape,
         Classroom,
-        Auditorium
+        Auditorium,
+        Boardroom
     }
 }

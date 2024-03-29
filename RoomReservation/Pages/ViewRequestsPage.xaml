@@ -1,12 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RoomReservation.Pages.ViewRequestsPage"
-             Title="ViewRequestsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="RoomReservation.Pages.ViewRequestPage"
+             Title="View Reservation Requests">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <!-- Label to display selected room -->
+            <Label x:Name="SelectedRoomLabel"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Text="Showing Reservation Requests for Room 102" />
+                   
+            <!-- ListView to display reservation requests -->
+            <ListView x:Name="RequestsListView"
+                      ItemSelected="OnRequestSelected"
+                      SeparatorVisibility="None"
+                      RowHeight="120"
+                      Background="AliceBlue">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Spacing="5">
+                                    <!-- Requester and Description in one line -->
+                                    <Label FontAttributes="Bold">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Requested by " />
+                                                <Span Text="{Binding RequestedBy}" FontAttributes="Bold" />
+                                                <Span Text=" for " />
+                                                <Span Text="{Binding Description}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!-- Meeting Date, Start Time, End Time in second line -->
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Scheduled on " />
+                                                <Span Text="{Binding MeetingDate, StringFormat='{0:MMMM d}'}" />
+                                                <Span Text=" from " />
+                                                <Span Text="{Binding StartTime, StringFormat='{0:hh\\:mm tt}'}" />
+                                                <Span Text=" to " />
+                                                <Span Text="{Binding EndTime, StringFormat='{0:hh\\:mm tt}'}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!-- Status in third line -->
+                                    <Label Text="{Binding Status, StringFormat='Status: {0}'}" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Small" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+            </ListView>
+            
+            <!-- Button to go back to the list of rooms -->
+            <Button Text="Back to Rooms" Clicked="OnBackToRoomsClicked" />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

@@ -4,61 +4,39 @@
              xmlns:local="clr-namespace:RoomReservation.BusinessLogic" 
              x:Class="RoomReservation.Pages.PickRoomPage"
              Title="Pick Meeting Room">
-    <!-- Added this to acess the file in business Logic -->
 
-    <ContentPage.Resources>
+        <ContentPage.Resources>
         <ResourceDictionary>
-            <local:LayoutToIconConverter
-                x:Key="layoutToIconConverter" />
+            <local:LayoutToIconConverter x:Key="layoutToIconConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!-- Main layout container -->
-    <StackLayout
-        Padding="10"
-        Spacing="10">
+    <StackLayout Padding="10" Spacing="10">
         <!-- Room Image -->
-        <Image
-            x:Name="RoomImage"
-            Aspect="AspectFit"
-            HeightRequest="200"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
+        <Image x:Name="RoomImage" Aspect="AspectFit" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
 
         <!-- ListView for rooms -->
-        <ListView
-            x:Name="RoomsListView"
-            SelectedItem="{Binding SelectedRoom}"
-            ItemSelected="RoomsListView_ItemSelected">
+        <ListView x:Name="RoomsListView"
+                  SelectedItem="{Binding SelectedRoom}"
+                  ItemSelected="RoomsListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="2"
-                              ColumnDefinitions="60, *, Auto"
-                              RowDefinitions="Auto, Auto">
+                        <Grid Padding="2" ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
                             <!-- Icon based on LayoutType -->
-                            <Image
-                                Source="{Binding LayoutType, Converter={StaticResource layoutToIconConverter}}" 
-                                Grid.Column="0" Grid.RowSpan="2" 
-                                VerticalOptions="Center" 
-                                WidthRequest="40" HeightRequest="40" />
-
+                            <Image Source="{Binding LayoutType, Converter={StaticResource layoutToIconConverter}}" 
+                                   Grid.Column="0" Grid.RowSpan="2" 
+                                   VerticalOptions="Center" 
+                                   WidthRequest="40" HeightRequest="40" />
                             <!-- Room details -->
-                            <Label
-                                Text="{Binding RoomNumber}" 
-                                Grid.Column="1" Grid.Row="0" 
-                                FontAttributes="Bold" />
-
-                            <Label
-                                Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}" 
-                                Grid.Column="1" Grid.Row="1" />
-
-                            <Label
-                                Text="{Binding LayoutType}" 
-                                Grid.Column="2" Grid.Row="0"
-                                Grid.RowSpan="2"
-                                VerticalOptions="Center"
-                                HorizontalOptions="End" />
+                            <Label Text="{Binding RoomNumber}" 
+                                   Grid.Column="1" Grid.Row="0" 
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}" 
+                                   Grid.Column="1" Grid.Row="1" />
+                            <Label Text="{Binding LayoutType}" 
+                                   Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                                   VerticalOptions="Center" HorizontalOptions="End" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -66,18 +44,10 @@
         </ListView>
 
         <!-- Separate layout for buttons, ensuring they're visually distinct -->
-        <StackLayout
-            Orientation="Horizontal"
-            HorizontalOptions="Center"
-            Spacing="20">
-
-            <Button
-                Text="Add Request"
-                Clicked="AddRequestButton_Clicked" />
-
-            <Button
-                Text="View Requests"
-                Clicked="ViewRequestsButton_Clicked" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+            <Button Text="Add Request" Clicked="AddRequestButton_Clicked" />
+            <Button Text="View Requests" Clicked="ViewRequestsButton_Clicked" />
         </StackLayout>
     </StackLayout>
+
 </ContentPage>
