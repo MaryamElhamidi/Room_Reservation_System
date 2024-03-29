@@ -9,6 +9,11 @@ namespace RoomReservation.BusinessLogic
         private List<MeetingRoom> _meetingRooms = new List<MeetingRoom>();
         private List<ReservationRequest> _reservationRequests = new List<ReservationRequest>();
 
+        public List<MeetingRoom> MeetingRooms
+        {
+            get { return _meetingRooms; }
+        }
+
         public void PopulateMeetingRooms()
         {
             AddMeetingRoom("A101", 18, RoomLayoutType.Classroom, "classroom.webp");
@@ -30,21 +35,16 @@ namespace RoomReservation.BusinessLogic
             }
         }
 
-        // Adjusted to match the updated ReservationRequest constructor
         public bool AddReservationRequest(string requestedBy, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, MeetingRoom meetingRoom)
         {
             if (meetingRoom == null || meetingRoom.SeatingCapacity < participantCount)
             {
-                return false; // Room not found or does not have enough capacity
+                return false; 
             }
 
             var request = new ReservationRequest(requestedBy, description, meetingDate, startTime, endTime, participantCount, meetingRoom);
             _reservationRequests.Add(request);
             return true;
-        }
-        public IEnumerable<MeetingRoom> GetAllMeetingRooms()
-        {
-            return _meetingRooms.OrderBy(r => r.RoomNumber).ToList();
         }
 
         public IEnumerable<ReservationRequest> GetAllReservationRequests()
@@ -52,12 +52,14 @@ namespace RoomReservation.BusinessLogic
             return _reservationRequests.OrderBy(r => r.RequestID).ToList();
         }
 
-        // Adjusted methods that relied on 'RoomNumber' to use 'MeetingRoom.RoomNumber'
-        public IEnumerable<ReservationRequest> GetReservationRequestsByRoom(string roomNumber)
+   
+        // Retrieves reservation requests by status
+        public IEnumerable<ReservationRequest> GetRequestsByStatus(RequestStatus status)
         {
-            return _reservationRequests.Where(request => request.MeetingRoom.RoomNumber == roomNumber).OrderBy(request => request.MeetingDate).ThenBy(request => request.StartDateTime).ToList();
+            return _reservationRequests.Where(r => r.Status == status).ToList();
         }
 
+        #region Bonus
         public bool UpdateReservationRequestStatus(int requestId, RequestStatus newStatus)
         {
             var request = _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
@@ -74,7 +76,7 @@ namespace RoomReservation.BusinessLogic
             request.Status = newStatus;
             return true;
         }
-
+        
         // Checks if a reservation request can be accepted without conflicts, now checks against MeetingRoom
         public bool CanAcceptRequest(ReservationRequest requestToCheck)
         {
@@ -119,14 +121,8 @@ namespace RoomReservation.BusinessLogic
         {
             return _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
         }
-        public ReservationRequest GetLastAddedRequest()
-        {
-            if (_reservationRequests.Any())
-            {
-                // The request with the highest RequestID is the most recently added
-                return _reservationRequests.OrderByDescending(request => request.RequestID).FirstOrDefault();
-            }
-            return null; // Return null if no requests have been added yet
-        }
+        #endregion
+
     }
+
 }

@@ -7,6 +7,7 @@ namespace RoomReservation.Pages
     public partial class ViewRequestPage : ContentPage
     {
         private MeetingRoom _selectedRoom;
+        private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
 
         public ViewRequestPage(MeetingRoom selectedRoom)
         {
@@ -20,7 +21,7 @@ namespace RoomReservation.Pages
 
         private void LoadAllReservationRequests()
         {
-            var allRequests = App.ReservationManager.GetAllReservationRequests();
+            var allRequests = _reservationRequestManager.GetAllReservationRequests();
 
             if (!allRequests.Any())
             {
@@ -31,6 +32,7 @@ namespace RoomReservation.Pages
             RequestsListView.ItemsSource = allRequests;
         }
 
+        #region Bonus
         private async void OnRequestSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem is ReservationRequest request)
@@ -53,7 +55,7 @@ namespace RoomReservation.Pages
 
                 if (accept)
                 {
-                    bool updated = App.ReservationManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Accepted);
+                    bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Accepted);
                     if (updated)
                     {
                         await DisplayAlert("Success", "Reservation accepted.", "OK");
@@ -65,7 +67,7 @@ namespace RoomReservation.Pages
                 }
                 else
                 {
-                    bool updated = App.ReservationManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Rejected);
+                    bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Rejected);
                     if (updated)
                     {
                         await DisplayAlert("Rejected", "Reservation rejected.", "OK");
@@ -80,7 +82,7 @@ namespace RoomReservation.Pages
                 LoadAllReservationRequests();
             }
         }
-
+        #endregion
         private void OnBackToRoomsClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();

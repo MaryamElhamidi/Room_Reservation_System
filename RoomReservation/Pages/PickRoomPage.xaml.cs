@@ -6,16 +6,14 @@ namespace RoomReservation.Pages;
 public partial class PickRoomPage : ContentPage
 {
     private MeetingRoom MeetingRoom;
+    private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
 
     public PickRoomPage()
     {
         InitializeComponent();
-        LoadRooms();
-    }
+        _reservationRequestManager.PopulateMeetingRooms();
+        RoomsListView.ItemsSource = _reservationRequestManager.MeetingRooms;
 
-    private void LoadRooms()
-    {
-        RoomsListView.ItemsSource = App.ReservationManager.GetAllMeetingRooms();
     }
 
     private void RoomsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

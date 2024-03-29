@@ -6,7 +6,7 @@ public partial class AddRequestPage : ContentPage
 {
     private MeetingRoom _selectedRoom;
     private static int _IDassigned = 0;
-
+    private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
 
     public AddRequestPage(MeetingRoom selectedRoom)
     {
@@ -25,8 +25,7 @@ public partial class AddRequestPage : ContentPage
 
     private async void OnAddRequestClicked(object sender, EventArgs e)
     {
-        try
-        {
+       
             if (string.IsNullOrWhiteSpace(UserNameEntry.Text) ||
                 string.IsNullOrWhiteSpace(MeetingPurposeEntry.Text) ||
                 !int.TryParse(ParticipantCountEntry.Text, out int participantCount) ||
@@ -50,14 +49,14 @@ public partial class AddRequestPage : ContentPage
             string formattedStartTime = startTime.ToString("hh:mm tt");
             string formattedEndTime = endTime.ToString("hh:mm tt");
 
-            var success = App.ReservationManager.AddReservationRequest(
-                UserNameEntry.Text, // RequestedBy
-                MeetingPurposeEntry.Text, // Description
-                MeetingDatePicker.Date, // Meeting Date
-                StartTimePicker.Time, // Start Time
-                EndTimePicker.Time, // End Time
-                participantCount, // Participant Count
-                _selectedRoom // MeetingRoom object
+            var success = _reservationRequestManager.AddReservationRequest(
+                UserNameEntry.Text,
+                MeetingPurposeEntry.Text, 
+                MeetingDatePicker.Date, 
+                StartTimePicker.Time, 
+                EndTimePicker.Time, 
+                participantCount, 
+                _selectedRoom 
             );
 
             if (success)
@@ -73,15 +72,8 @@ public partial class AddRequestPage : ContentPage
             {
                 await DisplayAlert("Error", "There was a problem adding your reservation request. Please try again.", "OK");
             }
-        }
-        catch (Exception ex)
-        {
-            // Log the exception details, inform the user something went wrong
-            // For example, using DisplayAlert to show a generic error message
-            await DisplayAlert("Error", "An unexpected error occurred. Please try again.", "OK");
-            // Consider logging the exception somewhere more substantial (e.g., log file, analytics)
-            Console.WriteLine(ex.ToString()); // Or use your preferred logging mechanism
-        }
+        
+
     }
 
     private async void OnBackToRoomsClicked(object sender, EventArgs e)
