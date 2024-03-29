@@ -118,3 +118,9 @@
 /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/lp/153/jl/files.cache
 /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/lp/154/jl/files.cache
 /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/lp/155/jl/files.cache
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/R.txt
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/R.cs.flag
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/RoomReservation.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/RoomReservation.AssemblyInfoInputs.cache
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/RoomReservation.AssemblyInfo.cs
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/RoomReservation.csproj.CoreCompileInputs.cache

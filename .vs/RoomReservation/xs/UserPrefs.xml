@@ -1,18 +1,17 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="Android.pixel_5_-_api_33" />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/BusinessLogic/ReservationRequestManager.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/Pages/PickRoomPage.xaml.cs">
     <Files>
       <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="7" Column="57" />
       <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" />
-      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" />
+      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" Line="1" Column="1" />
       <File FileName="RoomReservation/Pages/RequestList.xaml" />
       <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" />
       <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" />
@@ -21,18 +20,19 @@
       <File FileName="RoomReservation/BusinessLogic/LayoutToIconConvertor.cs" />
       <File FileName="RoomReservation/Pages/AddRequestPage.xaml.cs" />
       <File FileName="RoomReservation/App.xaml" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" Line="18" Column="56" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RoomReservation" expanded="True">
+          <Node name="RoomReservation">
             <Node name="RoomReservation">
-              <Node name="BusinessLogic" expanded="True">
-                <Node name="ReservationRequestManager.cs" selected="True" />
-              </Node>
-              <Node name="Pages" expanded="True">
-                <Node name="PickRoomPage.xaml" expanded="True" />
+              <Node name="BusinessLogic" expanded="True" />
+              <Node name="Pages">
+                <Node name="AddRequestPage.xaml" expanded="True" />
+                <Node name="PickRoomPage.xaml" expanded="True">
+                  <Node name="PickRoomPage.xaml.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -40,4 +40,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="Android.pixel_5_-_api_33" />
 </Properties>
