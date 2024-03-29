@@ -5,15 +5,37 @@ namespace RoomReservation.BusinessLogic
 {
     public class MeetingRoom
     {
+        private string _roomNumber;
+        private int _seatingCapacity;
         // Properties of the MeetingRoom class
-        public string RoomNumber { get; private set; }
-        public int SeatingCapacity { get; private set; }
         public RoomLayoutType LayoutType { get; private set; }
-        public string RoomImageFileName { get; private set; }
-        public string Name { get; set; } // Ensure this property exists
-        public string Layout { get; set; }
-        public string ImageUri { get; set; } // URL to the room's image
 
+        public string RoomImageFileName { get; private set; }
+
+        public string RoomNumber
+        {
+            get { return _roomNumber; }
+            private set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(value), "You have to provide a room number");
+                }
+                _roomNumber = value;
+            }
+        }
+        public int SeatingCapacity
+        {
+            get { return _seatingCapacity; }
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("The seating capacity must be greater than 0", nameof(value));
+                }
+                _seatingCapacity = value;
+            }
+        }
         // Constructor for the MeetingRoom class
         public MeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType layoutType, string roomImageFileName)
         {
@@ -21,6 +43,7 @@ namespace RoomReservation.BusinessLogic
             SeatingCapacity = seatingCapacity;
             LayoutType = layoutType;
             RoomImageFileName = roomImageFileName;
+
         }
 
         public string RoomTypeIcon
