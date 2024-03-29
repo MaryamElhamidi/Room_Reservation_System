@@ -7,7 +7,6 @@ namespace RoomReservation.BusinessLogic
     {
         private string _roomNumber;
         private int _seatingCapacity;
-        // Properties of the MeetingRoom class
         public RoomLayoutType LayoutType { get; private set; }
 
         public string RoomImageFileName { get; private set; }
@@ -52,6 +51,7 @@ namespace RoomReservation.BusinessLogic
         }
 
         public string RoomImageFile => $"{LayoutType}".ToLower() + ".png";
+
         public string LayoutTypeDisplay => LayoutType.ToString();
 
     }

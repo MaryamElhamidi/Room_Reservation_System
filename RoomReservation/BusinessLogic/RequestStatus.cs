@@ -1,11 +1,11 @@
 ﻿using System;
 namespace RoomReservation.BusinessLogic
 {
-	public class RequestStatus
-	{
-		public RequestStatus()
-		{
-		}
-	}
+    public enum RequestStatus
+    {
+        Pending,
+        Accepted,
+        Rejected,
+    }
 }
 
