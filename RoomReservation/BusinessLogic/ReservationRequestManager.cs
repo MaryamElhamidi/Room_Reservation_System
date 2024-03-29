@@ -119,5 +119,14 @@ namespace RoomReservation.BusinessLogic
         {
             return _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
         }
+        public ReservationRequest GetLastAddedRequest()
+        {
+            if (_reservationRequests.Any())
+            {
+                // The request with the highest RequestID is the most recently added
+                return _reservationRequests.OrderByDescending(request => request.RequestID).FirstOrDefault();
+            }
+            return null; // Return null if no requests have been added yet
+        }
     }
 }

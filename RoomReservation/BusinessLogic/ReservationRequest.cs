@@ -7,6 +7,7 @@ namespace RoomReservation.BusinessLogic
 
     public class ReservationRequest
     {
+        private static int _lastAssignedId = 0;
         private string _requestedBy;
         private string _description;
         private DateTime _meetingDate;
@@ -99,6 +100,7 @@ namespace RoomReservation.BusinessLogic
 
         public ReservationRequest(string requestedBy, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, MeetingRoom meetingRoom)
         {
+            RequestID = ++_lastAssignedId;
             RequestedBy = requestedBy;
             Description = description;
             MeetingDate = meetingDate;
