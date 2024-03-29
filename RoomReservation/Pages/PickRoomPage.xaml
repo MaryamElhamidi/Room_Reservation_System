@@ -5,15 +5,15 @@
              x:Class="RoomReservation.Pages.PickRoomPage"
              Title="Pick Meeting Room">
 
-        <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:LayoutToIconConverter x:Key="layoutToIconConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <StackLayout Padding="10" Spacing="10">
         <!-- Room Image -->
-        <Image x:Name="RoomImage" Aspect="AspectFit" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+        <Image x:Name="RoomImage"
+               Aspect="AspectFit"
+               HeightRequest="200"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Source="{Binding Path=RoomFileName}" />
 
         <!-- ListView for rooms -->
         <ListView x:Name="RoomsListView"
@@ -24,7 +24,7 @@
                     <ViewCell>
                         <Grid Padding="2" ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
                             <!-- Icon based on LayoutType -->
-                            <Image Source="{Binding LayoutType, Converter={StaticResource layoutToIconConverter}}" 
+                            <Image Source="{Binding RoomTypeIcon}" 
                                    Grid.Column="0" Grid.RowSpan="2" 
                                    VerticalOptions="Center" 
                                    WidthRequest="40" HeightRequest="40" />

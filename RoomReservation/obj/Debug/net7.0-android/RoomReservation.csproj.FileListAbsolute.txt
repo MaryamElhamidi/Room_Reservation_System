@@ -1007,3 +1007,7 @@
 /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/stamp/_GenerateJavaStubs.stamp
 /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/stamp/_GeneratePackageManagerJava.stamp
 /Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/stamp/_ResolveLibraryProjectImports.stamp
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/resizetizer/r/drawable/ushape1.png
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/resizetizer/r/drawable/boardroom1.png
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/resizetizer/r/drawable/holloqsquare1.png
+/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-android/resizetizer/r/drawable/hollowsquare1.png

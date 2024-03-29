@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="RoomReservation.app/Contents/MacOS/RoomReservation">
+      <BCSymbolMapName>RoomReservation.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>RoomReservation.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>RoomReservation.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/Yammy/Documents/GitHub/Assignment3/RoomReservation</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

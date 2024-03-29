@@ -8,7 +8,6 @@ namespace RoomReservation.Pages
     {
         private MeetingRoom _selectedRoom;
 
-
         public ViewRequestPage(MeetingRoom selectedRoom)
         {
             InitializeComponent();

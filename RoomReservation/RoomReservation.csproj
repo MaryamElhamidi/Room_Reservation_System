@@ -56,17 +56,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\auditorium_icon.svg" />
-	  <None Remove="Resources\Images\banquet_icon.svg" />
-	  <None Remove="Resources\Images\classroom_icon.svg" />
-	  <None Remove="Resources\Images\hollowsquare_icon.svg" />
-	  <None Remove="Resources\Images\ushape_icon.svg" />
 	  <None Remove="BusinessLogic\" />
 	  <None Remove="Pages\" />
 	  <None Remove="Resources\Images\auditorium.jpeg" />
 	  <None Remove="Resources\Images\auditorium1.png" />
 	  <None Remove="Resources\Images\boardroom.jpeg" />
-	  <None Remove="Resources\Images\broom1.png" />
 	  <None Remove="Resources\Images\classroom.webp" />
 	  <None Remove="Resources\Images\classroom1.png" />
 	  <None Remove="Resources\Images\hollowsquare.jpeg" />
@@ -74,30 +68,30 @@
 	  <None Remove="Resources\Images\question.webp" />
 	  <None Remove="Resources\Images\ushape.webp" />
 	  <None Remove="Resources\Images\utable1.png" />
+	  <None Remove="Resources\Images\hollowsquare1.png" />
+	  <None Remove="Resources\Images\boardroom1.png" />
+	  <None Remove="Resources\Images\ushape1.png" />
 	</ItemGroup>
 	<ItemGroup>
-	  <BundleResource Include="Resources\Images\auditorium_icon.svg" />
-	  <BundleResource Include="Resources\Images\banquet_icon.svg" />
-	  <BundleResource Include="Resources\Images\classroom_icon.svg" />
-	  <BundleResource Include="Resources\Images\hollowsquare_icon.svg" />
-	  <BundleResource Include="Resources\Images\ushape_icon.svg" />
 	  <BundleResource Include="Resources\Images\auditorium.jpeg" />
 	  <BundleResource Include="Resources\Images\auditorium1.png" />
 	  <BundleResource Include="Resources\Images\boardroom.jpeg" />
-	  <BundleResource Include="Resources\Images\broom1.png" />
 	  <BundleResource Include="Resources\Images\classroom.webp" />
 	  <BundleResource Include="Resources\Images\classroom1.png" />
 	  <BundleResource Include="Resources\Images\auditorium.jpeg" />
 	  <BundleResource Include="Resources\Images\auditorium1.png" />
 	  <BundleResource Include="Resources\Images\boardroom.jpeg" />
-	  <BundleResource Include="Resources\Images\broom1.png" />
+	  <BundleResource Include="Resources\Images\boardroom1.png" />
 	  <BundleResource Include="Resources\Images\classroom.webp" />
 	  <BundleResource Include="Resources\Images\classroom1.png" />
 	  <BundleResource Include="Resources\Images\hollowsquare.jpeg" />
-	  <BundleResource Include="Resources\Images\hsquare1.png" />
+	  <BundleResource Include="Resources\Images\hollowsquare1.png" />
 	  <BundleResource Include="Resources\Images\question.webp" />
 	  <BundleResource Include="Resources\Images\ushape.webp" />
-	  <BundleResource Include="Resources\Images\utable1.png" />
+	  <BundleResource Include="Resources\Images\ushape1.png" />
+	  <BundleResource Include="Resources\Images\hollowsquare1.png" />
+	  <BundleResource Include="Resources\Images\boardroom1.png" />
+	  <BundleResource Include="Resources\Images\ushape1.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="BusinessLogic\" />

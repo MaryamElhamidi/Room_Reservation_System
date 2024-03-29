@@ -15,7 +15,6 @@ public partial class App : Application
         PopulateMeetingRooms();
         MainPage = new NavigationPage(new PickRoomPage());
     }
-
     private void PopulateMeetingRooms()
     {
         ReservationManager.AddMeetingRoom("A101", 18, RoomLayoutType.Classroom, "classroom.webp");

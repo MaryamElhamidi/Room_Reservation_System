@@ -3,34 +3,6 @@ using System.Globalization;
 
 namespace RoomReservation.BusinessLogic
 {
-    public class LayoutToIconConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            string layoutType = value.ToString();
-            switch (layoutType)
-            {
-                case "HollowSquare":
-                    return "hsquare1.png";
-                case "UShape":
-                    return "utable1.png";
-                case "Classroom":
-                    return "classroom1.png";
-                case "Auditorium":
-                    return "auditorium1.png";
-                case "Boardroom":
-                    return "broom1.png";
-                default:
-                    return "question.webp";
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     public class MeetingRoom
     {
         // Properties of the MeetingRoom class
@@ -51,7 +23,13 @@ namespace RoomReservation.BusinessLogic
             RoomImageFileName = roomImageFileName;
         }
 
-        public string RoomImageFile => $"{LayoutType}".ToLower() + "_img.png";
+        public string RoomTypeIcon
+        {
+            get { return $"{LayoutType.ToString().ToLower()}1.png"; }
+        }
+
+        public string RoomImageFile => $"{LayoutType}".ToLower() + ".png";
+        public string LayoutTypeDisplay => LayoutType.ToString();
 
     }
 }

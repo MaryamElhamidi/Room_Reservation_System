@@ -37,9 +37,9 @@
                            Text="A102"
                            FontAttributes="Bold"
                            FontSize="Medium" />
-                    <Label Text="Layout: HollowSquare"
+                    <Label Text="{Binding LayoutTypeDisplay}"
                            FontSize="Small" />
-                    <Label Text="Capacity: 20"
+                    <Label Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}"
                            FontSize="Small" />
                 </StackLayout>
             </Grid>

@@ -6,11 +6,14 @@ public partial class AddRequestPage : ContentPage
 {
     private MeetingRoom _selectedRoom;
 
+
     public AddRequestPage(MeetingRoom selectedRoom)
     {
         InitializeComponent();
         _selectedRoom = selectedRoom;
         DisplaySelectedRoomDetails();
+        BindingContext = selectedRoom;
+
     }
 
     private void DisplaySelectedRoomDetails()
@@ -44,7 +47,7 @@ public partial class AddRequestPage : ContentPage
         string formattedStartTime = startTime.ToString("hh:mm tt");
         string formattedEndTime = endTime.ToString("hh:mm tt");
 
-        var success = App.ReservationManager.AddReservationRequest(
+    var success = App.ReservationManager.AddReservationRequest(
             requestId,
             UserNameEntry.Text,
             MeetingPurposeEntry.Text,

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using RoomReservation.BusinessLogic;
 
 
@@ -20,6 +19,15 @@ namespace RoomReservation.BusinessLogic
         private List<ReservationRequest> _reservationRequests = new List<ReservationRequest>();
         private int _nextRequestId = 1;
 
+
+        public void PopulateMeetingRooms()
+        {
+            AddMeetingRoom("A101", 18, RoomLayoutType.Classroom, "classroom.webp");
+            AddMeetingRoom("B102", 200, RoomLayoutType.Auditorium, "auditorium.jpeg");
+            AddMeetingRoom("C103", 10, RoomLayoutType.UShape, "ushape.webp");
+            AddMeetingRoom("D104", 20, RoomLayoutType.HollowSquare, "hollowsquare.jpeg");
+            AddMeetingRoom("E105", 18, RoomLayoutType.Boardroom, "boardroom.jpeg");
+        }
         // Adds a new meeting room if not already exists
         public void AddMeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType roomLayoutType, string roomImageFileName)
         {
@@ -34,7 +42,7 @@ namespace RoomReservation.BusinessLogic
         }
 
         // Adds a new reservation request
-        public bool AddReservationRequest(int requestId, string requestedBy, string meetingPurpose, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, string roomNumber)
+        public bool AddReservationRequest(int requestId, string requestedBy, string meetingPurpose, string text, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, string roomNumber)
         {
             var meetingRoom = _meetingRooms.FirstOrDefault(r => r.RoomNumber == roomNumber);
             if (meetingRoom == null || meetingRoom.SeatingCapacity < participantCount)
@@ -42,11 +50,10 @@ namespace RoomReservation.BusinessLogic
                 return false; // Room not found or does not have enough capacity
             }
 
-            var request = new ReservationRequest(_nextRequestId++, requestedBy, meetingPurpose, description, meetingDate, startTime, endTime, participantCount, roomNumber);
+            var request = new ReservationRequest(_nextRequestId++, requestedBy, meetingPurpose, meetingPurpose, meetingDate, startTime, endTime, participantCount, roomNumber);
             _reservationRequests.Add(request);
             return true;
         }
-
         // Retrieves all meeting rooms
         public IEnumerable<MeetingRoom> GetAllMeetingRooms()
         {
@@ -137,5 +144,6 @@ namespace RoomReservation.BusinessLogic
         {
             return _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
         }
+
     }
 }
