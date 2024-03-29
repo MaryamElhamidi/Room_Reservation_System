@@ -1,5 +1,13 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/AppShell.xaml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="Android.pixel_5_-_api_33" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_33" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/BusinessLogic/ReservationRequestManager.cs">
     <Files>
       <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" />
       <File FileName="RoomReservation/Pages/PickRoomPage.xaml" />
@@ -8,29 +16,28 @@
       <File FileName="RoomReservation/Pages/RequestList.xaml" />
       <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" />
       <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" />
-      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" />
-      <File FileName="RoomReservation/AppShell.xaml" Line="13" Column="1" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" Line="163" Column="1" />
+      <File FileName="RoomReservation/AppShell.xaml" />
+      <File FileName="RoomReservation/BusinessLogic/LayoutToIconConvertor.cs" />
+      <File FileName="RoomReservation/Pages/AddRequestPage.xaml.cs" />
+      <File FileName="RoomReservation/App.xaml" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="RoomReservation" expanded="True">
             <Node name="RoomReservation">
-              <Node name="BusinessLogic" expanded="True" />
-              <Node name="Pages" expanded="True" />
-              <Node name="AppShell.xaml" selected="True" />
+              <Node name="BusinessLogic" expanded="True">
+                <Node name="ReservationRequestManager.cs" selected="True" />
+              </Node>
+              <Node name="Pages" expanded="True">
+                <Node name="PickRoomPage.xaml" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.RoomReservation PreferredExecutionTarget="MyAppleMacCatalystID" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

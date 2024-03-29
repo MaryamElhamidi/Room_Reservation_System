@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RoomReservation.Pages.PickRoomPage"
              Title="Pick Meeting Room">
-    <ContentPage.Resources>
+      <ContentPage.Resources>
         <ResourceDictionary>
             <local:LayoutToIconConverter x:Key="layoutToIconConverter" />
         </ResourceDictionary>
@@ -17,7 +17,8 @@
         <!-- ListView for rooms -->
         <ListView x:Name="RoomsListView"
                   SelectedItem="{Binding SelectedRoom}"
-                  ItemSelected="RoomsListView_ItemSelected">
+                  ItemSelected="RoomsListView_ItemSelected"
+                  BackgroundColor="AliceBlue">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -47,4 +48,5 @@
             <Button Text="Add Request" Clicked="AddRequestButton_Clicked" />
             <Button Text="View Requests" Clicked="ViewRequestsButton_Clicked" />
         </StackLayout>
-    </StackLayout></ContentPage>
+    </StackLayout>
+</ContentPage>

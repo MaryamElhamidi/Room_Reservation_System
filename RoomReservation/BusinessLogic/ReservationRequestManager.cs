@@ -1,27 +1,25 @@
 ﻿using System;
 namespace RoomReservation.BusinessLogic
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+    public enum ReservationStatus
+    {
+        Pending,
+        Accepted,
+        Rejected
+    }
 
-    /// <summary>
-    /// Manages collections of MeetingRoom and ReservationRequest instances.
-    /// </summary>
     public class ReservationRequestManager
     {
-        private List<MeetingRoom> _meetingRooms = new List<MeetingRoom>();
-        private List<ReservationRequest> _reservationRequests = new List<ReservationRequest>();
-        private int _nextRequestId = 1;
+        private List<MeetingRoom> meetingRooms = new List<MeetingRoom>();
+        private List<ReservationRequest> reservationRequests = new List<ReservationRequest>();
+        private int nextRequestId = 1;
 
-        /// <summary>
-        /// Adds a new MeetingRoom if one with the same room number does not already exist.
-        /// </summary>
+        // Adds a new meeting room if not already exists
         public void AddMeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType roomLayoutType, string roomImageFileName)
         {
-            if (!_meetingRooms.Any(r => r.RoomNumber == roomNumber))
+            if (!meetingRooms.Any(r => r.RoomNumber == roomNumber))
             {
-                _meetingRooms.Add(new MeetingRoom(roomNumber, seatingCapacity, roomLayoutType, roomImageFileName));
+                meetingRooms.Add(new MeetingRoom(roomNumber, seatingCapacity, roomLayoutType, roomImageFileName));
             }
             else
             {
@@ -29,129 +27,136 @@ namespace RoomReservation.BusinessLogic
             }
         }
 
-        /// <summary>
-        /// Attempts to add a new ReservationRequest. Automatically assigns the next request ID.
-        /// </summary>
-        public bool AddReservationRequest(string requestedBy, string meetingPurpose, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, string roomNumber)
+        public bool AddReservationRequest(int requestId, string requestedBy, string meetingPurpose, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, string roomNumber)
         {
-            var meetingRoom = _meetingRooms.FirstOrDefault(r => r.RoomNumber == roomNumber);
+            var meetingRoom = meetingRooms.FirstOrDefault(r => r.RoomNumber == roomNumber);
             if (meetingRoom == null || meetingRoom.SeatingCapacity < participantCount)
             {
-                return false; // Room not found or insufficient capacity.
+                return false; // Room not found or does not have enough capacity
             }
 
-            var requestId = _nextRequestId++;
+            // Check if provided requestId is already in use
+            if (reservationRequests.Any(r => r.RequestID == requestId))
+            {
+                requestId = nextRequestId++; // Use next available ID if provided one is in use
+            }
+            else
+            {
+                // If provided ID is unique and valid but less than nextRequestId, just use it.
+                // If it's greater, adjust nextRequestId to ensure it remains sequential.
+                nextRequestId = Math.Max(requestId + 1, nextRequestId);
+            }
+
             var request = new ReservationRequest(requestId, requestedBy, meetingPurpose, description, meetingDate, startTime, endTime, participantCount, roomNumber);
-            _reservationRequests.Add(request);
+            reservationRequests.Add(request);
             return true;
         }
 
-        /// <summary>
-        /// Retrieves all meeting rooms sorted by room number.
-        /// </summary>
-        public IEnumerable<MeetingRoom> GetAllMeetingRooms() => _meetingRooms.OrderBy(r => r.RoomNumber).ToList();
+        // Retrieves all meeting rooms
+        public IEnumerable<MeetingRoom> GetAllMeetingRooms()
+        {
+            return meetingRooms.OrderBy(r => r.RoomNumber).ToList();
+        }
 
-        /// <summary>
-        /// Retrieves all reservation requests for a specific room, ordered by meeting date and start time.
-        /// </summary>
-        public IEnumerable<ReservationRequest> GetReservationRequestsByRoom(string roomNumber) => _reservationRequests.Where(request => request._roomNumber == roomNumber).OrderBy(request => request._meetingDate).ThenBy(request => request._startTime).ToList();
+        // Retrieves reservation requests by room number
+        public IEnumerable<ReservationRequest> GetReservationRequestsByRoom(string roomNumber)
+        {
+            return reservationRequests
+                .Where(request => request.RoomNumber == roomNumber)
+                .OrderBy(request => request.MeetingDate)
+                .ThenBy(request => request.StartTime)
+                .ToList();
+        }
 
-        /// <summary>
-        /// Retrieves all reservation requests with a specific status.
-        /// </summary>
-        public IEnumerable<ReservationRequest> GetRequestsByStatus(RequestStatus status) => _reservationRequests.Where(r => r._status == status).ToList();
+        public IEnumerable<ReservationRequest> GetRequestsByStatus(RequestStatus status)
+        {
+            return reservationRequests.Where(r => r.Status == status).ToList();
+        }
 
-        /// <summary>
-        /// Attempts to update the status of all requests for a given date and room to a new status, considering potential conflicts for accepted requests.
-        /// </summary>
         public bool BulkUpdateRequestStatus(DateTime targetDate, string roomNumber, RequestStatus newStatus)
         {
-            var targetedRequests = _reservationRequests.Where(r => r._meetingDate.Date == targetDate.Date && r._roomNumber == roomNumber).ToList();
+            var targetedRequests = reservationRequests.Where(r => r.MeetingDate.Date == targetDate.Date && r.RoomNumber == roomNumber).ToList();
             bool conflictsExist = false;
 
             foreach (var request in targetedRequests)
             {
-                if (newStatus == RequestStatus.Accepted && !CanAcceptRequest(request))
+                if (newStatus == RequestStatus.Accepted)
                 {
-                    conflictsExist = true;
-                    continue; // Skip this request to avoid conflicts.
+                    if (!CanAcceptRequest(request))
+                    {
+                        conflictsExist = true;
+                        continue; // Skip conflicting requests without changing their status.
+                    }
                 }
-                request.UpdateRequestStatus(newStatus);
+                request.Status = newStatus;
             }
 
-            return !conflictsExist;
+            return !conflictsExist; // Return true if all requests were updated without any conflict.
         }
 
-        /// <summary>
-        /// Checks if a request can be accepted without causing scheduling conflicts.
-        /// </summary>
-        private bool CanAcceptRequest(ReservationRequest requestToCheck) => !_reservationRequests.Any(existingRequest => existingRequest._roomNumber == requestToCheck._roomNumber && existingRequest._meetingDate == requestToCheck._meetingDate && existingRequest._status == RequestStatus.Accepted && !((requestToCheck._endTime <= existingRequest._startTime) || (requestToCheck._startTime >= existingRequest._endTime)));
+        public bool CanAcceptRequest(ReservationRequest requestToCheck)
+        {
+            return !reservationRequests.Any(existingRequest =>
+                existingRequest.RoomNumber == requestToCheck.RoomNumber &&
+                existingRequest.MeetingDate == requestToCheck.MeetingDate &&
+                existingRequest.Status == RequestStatus.Accepted &&
+                !((requestToCheck.EndTime <= existingRequest.StartTime) || (requestToCheck.StartTime >= existingRequest.EndTime)));
+        }
 
-        /// <summary>
-        /// Updates the status of a specific reservation request.
-        /// </summary>
         public bool UpdateReservationRequestStatus(int requestId, RequestStatus newStatus)
         {
-            var request = _reservationRequests.FirstOrDefault(r => r._requestID == requestId);
-            if (request == null || (newStatus == RequestStatus.Accepted && !CanAcceptRequest(request)))
-            {
-                return false; // Request not found or conflict detected.
-            }
-
-            request.UpdateRequestStatus(newStatus);
-            return true;
-        }
-
-        /// <summary>
-        /// Cancels a specific reservation request by its ID.
-        /// </summary>
-        public bool CancelReservationRequest(int requestId)
-        {
-            var request = _reservationRequests.FirstOrDefault(r => r._requestID == requestId);
-            if (request != null)
-            {
-                _reservationRequests.Remove(request);
-                return true; // Successfully canceled the reservation request.
-            }
-            return false; // No request found with the specified ID.
-        }
-
-        /// <summary>
-        /// Updates the details of an existing reservation request.
-        /// </summary>
-        public bool UpdateReservationRequest(int requestId, DateTime newMeetingDate, TimeSpan newStartTime, TimeSpan newEndTime, int newParticipantCount)
-        {
-            var request = _reservationRequests.FirstOrDefault(r => r._requestID == requestId);
+            var request = reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
             if (request == null)
             {
-                return false; // Request not found.
+                return false; // Request not found
             }
 
-            var meetingRoom = _meetingRooms.FirstOrDefault(r => r.RoomNumber == request._roomNumber);
-            if (meetingRoom == null || meetingRoom.SeatingCapacity < newParticipantCount)
+            // If the request is to be accepted, check for conflicts
+            if (newStatus == RequestStatus.Accepted && !CanAcceptRequest(request))
             {
-                return false; // Room not found or insufficient capacity.
+                return false; // Conflict found, cannot accept the request
             }
 
-            if (newEndTime <= newStartTime)
-            {
-                return false; // Invalid time range.
-            }
-
-            // Update the request details.
-            request._meetingDate = newMeetingDate;
-            request._startTime = newStartTime;
-            request._endTime = newEndTime;
-            request._participantCount = newParticipantCount;
-
+            // Update the status as no conflicts were found or the request is being rejected
+            request.Status = newStatus;
             return true;
         }
 
-        /// <summary>
-        /// Retrieves a specific reservation request by its ID.
-        /// </summary>
-        public ReservationRequest GetReservationRequestById(int requestId) => _reservationRequests.FirstOrDefault(r => r._requestID == requestId);
+        // Cancels a reservation request by request ID
+        public bool CancelReservationRequest(int requestId)
+        {
+            var request = reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
+            if (request != null)
+            {
+                reservationRequests.Remove(request);
+                return true;
+            }
+            return false;
+        }
+
+        // Updates a reservation request
+        public bool UpdateReservationRequest(int requestId, DateTime newMeetingDate, TimeSpan newStartTime, TimeSpan newEndTime, int newParticipantCount)
+        {
+            var request = reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
+            if (request != null && newEndTime > newStartTime)
+            {
+                var meetingRoom = meetingRooms.FirstOrDefault(r => r.RoomNumber == request.RoomNumber);
+                if (meetingRoom != null && meetingRoom.SeatingCapacity >= newParticipantCount)
+                {
+                    request.MeetingDate = newMeetingDate;
+                    request.StartTime = newStartTime;
+                    request.EndTime = newEndTime;
+                    request.ParticipantCount = newParticipantCount;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Retrieves a specific reservation request by request ID
+        public ReservationRequest GetReservationRequestById(int requestId)
+        {
+            return reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
+        }
     }
-
-
 }
