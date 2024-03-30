@@ -1,6 +1,5 @@
 ﻿using System;
 using RoomReservation.BusinessLogic;
-using static Android.Provider.CalendarContract;
 
 
 namespace RoomReservation.BusinessLogic
