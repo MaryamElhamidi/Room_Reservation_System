@@ -1,11 +1,14 @@
 ﻿using System;
 using RoomReservation.BusinessLogic;
+using static Android.Provider.CalendarContract;
 
 
 namespace RoomReservation.BusinessLogic
 {
     public class ReservationRequestManager
     {
+        private static ReservationRequestManager _instance;
+
         private List<MeetingRoom> _meetingRooms = new List<MeetingRoom>();
         private List<ReservationRequest> _reservationRequests = new List<ReservationRequest>();
 
@@ -13,7 +16,21 @@ namespace RoomReservation.BusinessLogic
         {
             get { return _meetingRooms; }
         }
+        // Private constructor to prevent instantiation outside this class
+        private ReservationRequestManager() { }
 
+        // Public static method to get the instance
+        public static ReservationRequestManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ReservationRequestManager();
+                }
+                return _instance;
+            }
+        }
         public void PopulateMeetingRooms()
         {
             AddMeetingRoom("A101", 18, RoomLayoutType.Classroom, "classroom.webp");

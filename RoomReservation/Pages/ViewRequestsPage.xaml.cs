@@ -7,7 +7,7 @@ namespace RoomReservation.Pages
     public partial class ViewRequestPage : ContentPage
     {
         private MeetingRoom _selectedRoom;
-        private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
+        private ReservationRequestManager _reservationRequestManager = ReservationRequestManager.Instance;
 
         public ViewRequestPage(MeetingRoom selectedRoom)
         {

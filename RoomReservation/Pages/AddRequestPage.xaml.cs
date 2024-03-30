@@ -6,7 +6,7 @@ public partial class AddRequestPage : ContentPage
 {
     private MeetingRoom _selectedRoom;
     private static int _IDassigned = 0;
-    private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
+    private ReservationRequestManager _reservationRequestManager = ReservationRequestManager.Instance;
 
     public AddRequestPage(MeetingRoom selectedRoom)
     {
