@@ -4,6 +4,15 @@
         <name>RoomReservation</name>
     </assembly>
     <members>
+        <member name="M:RoomReservation.BusinessLogic.MeetingRoom.#ctor(System.String,System.Int32,RoomReservation.BusinessLogic.RoomLayoutType,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:RoomReservation.BusinessLogic.MeetingRoom"/> class.
+            </summary>
+            <param name="roomNumber">The room number.</param>
+            <param name="seatingCapacity">The seating capacity of the room.</param>
+            <param name="layoutType">The layout type of the room.</param>
+            <param name="roomImageFileName">The file name of the room image.</param>
+        </member>
         <member name="T:RoomReservation.BusinessLogic.RoomLayoutType">
             <summary>
             Represents the layout type of a meeting room.

@@ -7,6 +7,7 @@ namespace RoomReservation.Pages
 {
     public partial class ViewRequestPage : ContentPage
     {
+        #region Fields
         // Selected room for which reservation requests are being viewed
         private MeetingRoom _selectedRoom;
 
@@ -16,7 +17,9 @@ namespace RoomReservation.Pages
         // Collection to display reservation requests in the UI
         private ObservableCollection<ReservationRequest> _requestsListViewDisplay = new ObservableCollection<ReservationRequest>();
 
-        // Constructor to initialize the ViewRequestPage with selected room and reservation manager
+        #endregion
+
+        #region Constructor    
         public ViewRequestPage(MeetingRoom selectedRoom, ReservationRequestManager reservationRequestManager)
         {
             InitializeComponent();
@@ -31,6 +34,7 @@ namespace RoomReservation.Pages
             SelectedRoomLabel.Text = $"Showing Reservation for Room {_selectedRoom.RoomNumber}";
             RequestsListView.ItemsSource = _requestsListViewDisplay;
         }
+        #endregion
 
         #region Methods
 

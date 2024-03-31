@@ -3,10 +3,9 @@ using RoomReservation.BusinessLogic;
 
 namespace RoomReservation.BusinessLogic
 {
-
-
     public class ReservationRequest
     {
+        #region Fields
         private static int _lastAssignedId = 0;
         private string _requestedBy;
         private string _description;
@@ -15,7 +14,9 @@ namespace RoomReservation.BusinessLogic
         private TimeSpan _endTime;
         private int _participantCount;
         private MeetingRoom _meetingRoom;
+        #endregion
 
+        #region Properties
         public int RequestID { get; private set; }
         public string RequestedBy
         {
@@ -56,22 +57,20 @@ namespace RoomReservation.BusinessLogic
             }
         }
 
-        // Combining StartDate and StartTime for full DateTime
+        // Properties to combine date and time for full DateTime
         public DateTime StartDateTime => MeetingDate.Add(StartTime);
-
-        // Combining MeetingDate and EndTime for full DateTime
         public DateTime EndDateTime => MeetingDate.Add(EndTime);
 
         public TimeSpan StartTime
         {
             get { return _startTime; }
-            set { _startTime = value; } 
+            set { _startTime = value; }
         }
 
         public TimeSpan EndTime
         {
             get { return _endTime; }
-            set { _endTime = value; } 
+            set { _endTime = value; }
         }
 
         public int ParticipantCount
@@ -87,6 +86,7 @@ namespace RoomReservation.BusinessLogic
             }
         }
 
+        // Property for request status
         public RequestStatus Status { get; set; } = RequestStatus.Pending;
 
         public MeetingRoom MeetingRoom
@@ -97,7 +97,9 @@ namespace RoomReservation.BusinessLogic
                 _meetingRoom = value ?? throw new ArgumentException("You must provide a valid meeting room.");
             }
         }
+        #endregion
 
+        #region Constructor
         public ReservationRequest(string requestedBy, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, MeetingRoom meetingRoom)
         {
             RequestID = ++_lastAssignedId;
@@ -118,14 +120,16 @@ namespace RoomReservation.BusinessLogic
             ParticipantCount = participantCount;
             MeetingRoom = meetingRoom;
         }
-    
+        #endregion
 
-
+        #region Methods
+        // Method to update request status
         public void UpdateRequestStatus(RequestStatus newStatus)
         {
             Status = newStatus;
         }
 
+        // Method to provide string representation of the reservation request
         public override string ToString()
         {
             return $"RequestID: {RequestID}, " +
@@ -137,5 +141,6 @@ namespace RoomReservation.BusinessLogic
                    $"ParticipantCount: {ParticipantCount}, " +
                    $"Status: {Status}";
         }
+        #endregion
     }
 }
