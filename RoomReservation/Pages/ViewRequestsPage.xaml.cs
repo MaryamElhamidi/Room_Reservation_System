@@ -7,45 +7,70 @@ namespace RoomReservation.Pages
 {
     public partial class ViewRequestPage : ContentPage
     {
+        // Selected room for which reservation requests are being viewed
         private MeetingRoom _selectedRoom;
+
+        // Manager for handling reservation requests
         private ReservationRequestManager _reservationRequestManager;
+
+        // Collection to display reservation requests in the UI
         private ObservableCollection<ReservationRequest> _requestsListViewDisplay = new ObservableCollection<ReservationRequest>();
 
+        // Constructor to initialize the ViewRequestPage with selected room and reservation manager
         public ViewRequestPage(MeetingRoom selectedRoom, ReservationRequestManager reservationRequestManager)
         {
             InitializeComponent();
             _selectedRoom = selectedRoom;
             _reservationRequestManager = reservationRequestManager;
+
+            // Load reservation requests for the selected room
             LoadRequestsForDisplay();
+
+            // Set the binding context and UI elements
             BindingContext = this;
             SelectedRoomLabel.Text = $"Showing Reservation for Room {_selectedRoom.RoomNumber}";
             RequestsListView.ItemsSource = _requestsListViewDisplay;
         }
 
+        #region Methods
+
+        // Method to load and display reservation requests for the selected room
         private void LoadRequestsForDisplay()
         {
+            // Clear the current list of reservation requests
             _requestsListViewDisplay.Clear();
 
+            // Iterate through all reservation requests
             foreach (var reservation in _reservationRequestManager.ReservationRequests)
             {
+                // Check if the reservation request is for the selected room
                 if (reservation.MeetingRoom.RoomNumber == _selectedRoom.RoomNumber)
                 {
+                    // Add the reservation request to the display list
                     _requestsListViewDisplay.Add(reservation);
                 }
             }
         }
 
-        #region Bonus
+        #endregion
+
+        #region Event Handlers
+
+        // Event handler for when a reservation request is selected
         private async void OnRequestSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            // Check if a reservation request item is selected
             if (e.SelectedItem is ReservationRequest request)
             {
+                // Calculate start and end times for the meeting
                 var startDateTime = request.MeetingDate.Add(request.StartTime);
                 var endDateTime = request.MeetingDate.Add(request.EndTime);
 
+                // Format start and end times for display
                 var formattedStartTime = startDateTime.ToString("hh:mm tt");
                 var formattedEndTime = endDateTime.ToString("hh:mm tt");
 
+                // Construct message with reservation details
                 var message = $"Room Number: {_selectedRoom.RoomNumber}\n" +
                             $"Room Layout: {_selectedRoom.LayoutType}\n" +
                             $"Requested By: {request.RequestedBy}\n" +
@@ -54,10 +79,13 @@ namespace RoomReservation.Pages
                             $"Time: {formattedStartTime} - {formattedEndTime}\n" +
                             $"Status: {request.Status}";
 
+                // Display alert dialog with reservation details and options to accept or reject
                 bool accept = await DisplayAlert("Reservation Details", message, "Accept", "Reject");
 
+                // Handle user response to accept or reject the reservation request
                 if (accept)
                 {
+                    // Update reservation request status to accepted
                     bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Accepted);
                     if (updated)
                     {
@@ -70,6 +98,7 @@ namespace RoomReservation.Pages
                 }
                 else
                 {
+                    // Update reservation request status to rejected
                     bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Rejected);
                     if (updated)
                     {
@@ -81,14 +110,18 @@ namespace RoomReservation.Pages
                     }
                 }
 
-                // Refresh the list view
+                // Refresh the list view to reflect the updated reservation status
                 LoadRequestsForDisplay();
             }
         }
-        #endregion
+
+        // Event handler for when back button is clicked
         private void OnBackToRoomsClicked(object sender, EventArgs e)
         {
+            // Navigate back to the previous page
             Navigation.PopAsync();
         }
+
+        #endregion
     }
 }
