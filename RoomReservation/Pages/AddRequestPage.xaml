@@ -8,6 +8,7 @@
         <StackLayout Padding="10" Spacing="4">
             <!-- Title -->
             <Label Text="Add Reservation Request"
+                   Style="{StaticResource GlobalLabelStyle}"
                    FontAttributes="Bold"
                    FontSize="Large"
                    HorizontalOptions="Center"
@@ -76,9 +77,11 @@
                          HorizontalOptions="FillAndExpand"
                          Spacing="10">
                 <Button Text="Add Request"
+                        Style="{StaticResource GlobalButtonStyle}"
                         Clicked="OnAddRequestClicked"
                         HorizontalOptions="FillAndExpand" />
                 <Button Text="Back to Rooms"
+                        Style="{StaticResource GlobalButtonStyle}"
                         Clicked="OnBackToRoomsClicked"
                         HorizontalOptions="FillAndExpand" />
             </StackLayout>

@@ -5,8 +5,36 @@
              x:Class="RoomReservation.App">
     <Application.Resources>
         <ResourceDictionary>
-            
+            <!-- Global Styles -->
+            <Style x:Key="GlobalButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+
+            <Style x:Key="GlobalLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <!-- ListView DataTemplate for displaying rooms -->
+            <DataTemplate x:Key="RoomListViewItemTemplate">
+                <ViewCell>
+                    <Grid Padding="2" ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
+                        <Image Source="{Binding RoomTypeIcon}" 
+                               Grid.Column="0" Grid.RowSpan="2" 
+                               VerticalOptions="Center" 
+                               WidthRequest="40" HeightRequest="40"/>
+                        <Label Text="{Binding RoomNumber}" 
+                               Grid.Column="1" Grid.Row="0" 
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}" 
+                               Grid.Column="1" Grid.Row="1"/>
+                        <Label Text="{Binding LayoutType}" 
+                               Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                               VerticalOptions="Center" HorizontalOptions="End"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
-

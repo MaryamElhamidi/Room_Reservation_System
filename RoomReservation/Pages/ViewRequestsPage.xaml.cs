@@ -12,8 +12,8 @@ namespace RoomReservation.Pages
         public ViewRequestPage(MeetingRoom selectedRoom)
         {
             InitializeComponent();
-            LoadAllReservationRequests();
             _selectedRoom = selectedRoom;
+            LoadAllReservationRequests();
             BindingContext = this;
             SelectedRoomLabel.Text = $"Showing Reservation for Room {_selectedRoom.RoomNumber}";
 
@@ -21,15 +21,17 @@ namespace RoomReservation.Pages
 
         private void LoadAllReservationRequests()
         {
-            var allRequests = _reservationRequestManager.GetAllReservationRequests();
+            // Filter requests by the selected room's room number
+            var roomSpecificRequests = _reservationRequestManager.GetAllReservationRequests()
+                                        .Where(request => request.MeetingRoom.RoomNumber == _selectedRoom.RoomNumber);
 
-            if (!allRequests.Any())
+            if (!roomSpecificRequests.Any())
             {
-                DisplayAlert("Info", "No reservation requests found.", "OK");
+                DisplayAlert("Info", "No reservation requests found for this room.", "OK").ConfigureAwait(false);
                 return;
             }
 
-            RequestsListView.ItemsSource = allRequests;
+            RequestsListView.ItemsSource = roomSpecificRequests;
         }
 
         #region Bonus

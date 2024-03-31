@@ -5,50 +5,33 @@
              x:Class="RoomReservation.Pages.PickRoomPage"
              Title="Pick Meeting Room">
 
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="10">
+            <!-- Room Image -->
+            <Image x:Name="RoomImage"
+                   Aspect="AspectFit"
+                   HeightRequest="200"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Source="{Binding Path=RoomFileName}" />
 
-    <StackLayout Padding="10" Spacing="10">
-        <!-- Room Image -->
-        <Image x:Name="RoomImage"
-               Aspect="AspectFit"
-               HeightRequest="200"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               Source="{Binding Path=RoomFileName}" />
+            <!-- ListView for rooms, now using the ItemTemplate from App.xaml -->
+            <ListView x:Name="RoomsListView"
+                      SelectedItem="{Binding SelectedRoom}"
+                      ItemSelected="RoomsListView_ItemSelected"
+                      ItemTemplate="{StaticResource RoomListViewItemTemplate}"
+                      BackgroundColor="AliceBlue">
+            </ListView>
 
-        <!-- ListView for rooms -->
-        <ListView x:Name="RoomsListView"
-                  SelectedItem="{Binding SelectedRoom}"
-                  ItemSelected="RoomsListView_ItemSelected"
-                  BackgroundColor="AliceBlue">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="2" ColumnDefinitions="60, *, Auto" RowDefinitions="Auto, Auto">
-                            <!-- Icon based on LayoutType -->
-                            <Image Source="{Binding RoomTypeIcon}" 
-                                   Grid.Column="0" Grid.RowSpan="2" 
-                                   VerticalOptions="Center" 
-                                   WidthRequest="40" HeightRequest="40" />
-                            <!-- Room details -->
-                            <Label Text="{Binding RoomNumber}" 
-                                   Grid.Column="1" Grid.Row="0" 
-                                   FontAttributes="Bold" />
-                            <Label Text="{Binding SeatingCapacity, StringFormat='Capacity: {0}'}" 
-                                   Grid.Column="1" Grid.Row="1" />
-                            <Label Text="{Binding LayoutType}" 
-                                   Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
-                                   VerticalOptions="Center" HorizontalOptions="End" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <!-- Separate layout for buttons, ensuring they're visually distinct -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
-            <Button Text="Add Request" Clicked="AddRequestButton_Clicked" />
-            <Button Text="View Requests" Clicked="ViewRequestsButton_Clicked" />
+            <!-- Separate layout for buttons, ensuring they're visually distinct and applying GlobalButtonStyle -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                <Button Text="Add Request" 
+                        Clicked="AddRequestButton_Clicked" 
+                        Style="{StaticResource GlobalButtonStyle}" />
+                <Button Text="View Requests" 
+                        Clicked="ViewRequestsButton_Clicked" 
+                        Style="{StaticResource GlobalButtonStyle}" />
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
-
+    </ContentPage.Content>
 </ContentPage>
