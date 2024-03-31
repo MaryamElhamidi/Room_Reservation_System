@@ -6,8 +6,6 @@ namespace RoomReservation.BusinessLogic
 {
     public class ReservationRequestManager
     {
-       
-
         private List<MeetingRoom> _meetingRooms = new List<MeetingRoom>();
         private List<ReservationRequest> _reservationRequests = new List<ReservationRequest>();
 
@@ -31,7 +29,7 @@ namespace RoomReservation.BusinessLogic
 
         public void AddMeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType roomLayoutType, string roomImageFileName)
         {
-            if (!_meetingRooms.Any(r => r.RoomNumber == roomNumber))
+            if (!_meetingRooms.Any(r => r.RoomNumber == roomNumber)) //Explained on 1.A in Report
             {
                 _meetingRooms.Add(new MeetingRoom(roomNumber, seatingCapacity, roomLayoutType, roomImageFileName));
             }
@@ -57,7 +55,16 @@ namespace RoomReservation.BusinessLogic
         #region Bonus
         public bool UpdateReservationRequestStatus(int requestId, RequestStatus newStatus)
         {
-            var request = _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
+            ReservationRequest request = null;
+            foreach (var r in _reservationRequests)
+            {
+                if (r.RequestID == requestId)
+                {
+                    request = r;
+                    break; // Exit the loop once we find the matching request
+                }
+            }
+
             if (request == null)
             {
                 return false; // Request not found
@@ -71,7 +78,7 @@ namespace RoomReservation.BusinessLogic
             request.Status = newStatus;
             return true;
         }
-        
+
         // Checks if a reservation request can be accepted without conflicts, now checks against MeetingRoom
         public bool CanAcceptRequest(ReservationRequest requestToCheck)
         {
@@ -84,28 +91,45 @@ namespace RoomReservation.BusinessLogic
 
         public bool CancelReservationRequest(int requestId)
         {
-            var request = _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
-            if (request != null)
+            ReservationRequest requestToDelete = null;
+            foreach (var request in _reservationRequests)
             {
-                _reservationRequests.Remove(request);
+                if (request.RequestID == requestId)
+                {
+                    requestToDelete = request;
+                    break;
+                }
+            }
+
+            if (requestToDelete != null)
+            {
+                _reservationRequests.Remove(requestToDelete);
                 return true;
             }
             return false;
         }
 
-        // Updated to reflect DateTime changes
         public bool UpdateReservationRequest(int requestId, DateTime newMeetingDate, TimeSpan newStartTime, TimeSpan newEndTime, int newParticipantCount)
         {
-            var request = _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
-            if (request != null)
+            ReservationRequest requestToUpdate = null;
+            foreach (var request in _reservationRequests)
             {
-                var meetingRoom = request.MeetingRoom; // Direct reference to MeetingRoom
+                if (request.RequestID == requestId)
+                {
+                    requestToUpdate = request;
+                    break;
+                }
+            }
+
+            if (requestToUpdate != null)
+            {
+                var meetingRoom = requestToUpdate.MeetingRoom;
                 if (meetingRoom != null && meetingRoom.SeatingCapacity >= newParticipantCount)
                 {
-                    request.MeetingDate = newMeetingDate;
-                    request.StartTime = newStartTime;
-                    request.EndTime = newEndTime;
-                    request.ParticipantCount = newParticipantCount;
+                    requestToUpdate.MeetingDate = newMeetingDate;
+                    requestToUpdate.StartTime = newStartTime;
+                    requestToUpdate.EndTime = newEndTime;
+                    requestToUpdate.ParticipantCount = newParticipantCount;
                     return true;
                 }
             }
@@ -114,7 +138,14 @@ namespace RoomReservation.BusinessLogic
 
         public ReservationRequest GetReservationRequestById(int requestId)
         {
-            return _reservationRequests.FirstOrDefault(r => r.RequestID == requestId);
+            foreach (var request in _reservationRequests)
+            {
+                if (request.RequestID == requestId)
+                {
+                    return request;
+                }
+            }
+            return null;
         }
         #endregion
 
