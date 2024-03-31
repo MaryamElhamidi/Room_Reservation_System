@@ -8,7 +8,6 @@ namespace RoomReservation.BusinessLogic
         private string _roomNumber;
         private int _seatingCapacity;
         public RoomLayoutType LayoutType { get; private set; }
-
         public string RoomImageFileName { get; private set; }
 
         public string RoomNumber
@@ -35,7 +34,7 @@ namespace RoomReservation.BusinessLogic
                 _seatingCapacity = value;
             }
         }
-        // Constructor for the MeetingRoom class
+
         public MeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType layoutType, string roomImageFileName)
         {
             RoomNumber = roomNumber;

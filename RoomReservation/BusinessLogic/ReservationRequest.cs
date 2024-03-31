@@ -128,7 +128,6 @@ namespace RoomReservation.BusinessLogic
 
         public override string ToString()
         {
-            // Improved date and time formatting for better readability
             return $"RequestID: {RequestID}, " +
                    $"RequestedBy: {RequestedBy}, " +
                    $"Description: {Description}, " +

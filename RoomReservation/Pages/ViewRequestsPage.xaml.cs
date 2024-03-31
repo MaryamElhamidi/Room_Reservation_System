@@ -1,6 +1,7 @@
 ﻿using RoomReservation.BusinessLogic;
 using RoomReservation.Pages;
 using System;
+using System.Collections.ObjectModel;
 
 namespace RoomReservation.Pages
 {
@@ -8,30 +9,31 @@ namespace RoomReservation.Pages
     {
         private MeetingRoom _selectedRoom;
         private ReservationRequestManager _reservationRequestManager = ReservationRequestManager.Instance;
+        private ObservableCollection<ReservationRequest> _requestsForDisplay = new ObservableCollection<ReservationRequest>();
 
         public ViewRequestPage(MeetingRoom selectedRoom)
         {
             InitializeComponent();
             _selectedRoom = selectedRoom;
-            LoadAllReservationRequests();
+            PopulateRequestsForDisplay();
             BindingContext = this;
             SelectedRoomLabel.Text = $"Showing Reservation for Room {_selectedRoom.RoomNumber}";
-
+            RequestsListView.ItemsSource = _requestsForDisplay;
         }
 
-        private void LoadAllReservationRequests()
+        private void PopulateRequestsForDisplay()
         {
-            // Filter requests by the selected room's room number
-            var roomSpecificRequests = _reservationRequestManager.GetAllReservationRequests()
-                                        .Where(request => request.MeetingRoom.RoomNumber == _selectedRoom.RoomNumber);
+            _requestsForDisplay.Clear(); // Clear existing items to refresh the list
 
-            if (!roomSpecificRequests.Any())
+            // Loop through all reservation requests in the manager
+            foreach (var res in _reservationRequestManager.ReservationRequests)
             {
-                DisplayAlert("Info", "No reservation requests found for this room.", "OK").ConfigureAwait(false);
-                return;
+                // Compare using a unique identifier (e.g., RoomNumber) instead of direct object reference
+                if (res.MeetingRoom.RoomNumber == _selectedRoom.RoomNumber)
+                {
+                    _requestsForDisplay.Add(res);
+                }
             }
-
-            RequestsListView.ItemsSource = roomSpecificRequests;
         }
 
         #region Bonus
@@ -81,7 +83,7 @@ namespace RoomReservation.Pages
                 }
 
                 // Refresh the list view
-                LoadAllReservationRequests();
+                PopulateRequestsForDisplay();
             }
         }
         #endregion
