@@ -6,7 +6,7 @@ namespace RoomReservation.Pages;
 public partial class PickRoomPage : ContentPage
 {
     private MeetingRoom MeetingRoom;
-    private ReservationRequestManager _reservationRequestManager = ReservationRequestManager.Instance;
+    private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
 
     public PickRoomPage()
     {
@@ -33,7 +33,7 @@ public partial class PickRoomPage : ContentPage
             return;
         }
 
-        await Navigation.PushAsync(new AddRequestPage(MeetingRoom));
+        await Navigation.PushAsync(new AddRequestPage(MeetingRoom, _reservationRequestManager));
     }
 
     private async void ViewRequestsButton_Clicked(object sender, EventArgs e)
@@ -44,6 +44,6 @@ public partial class PickRoomPage : ContentPage
             return;
         }
 
-        await Navigation.PushAsync(new ViewRequestPage(MeetingRoom));
+        await Navigation.PushAsync(new ViewRequestPage(MeetingRoom, _reservationRequestManager));
     }
 }

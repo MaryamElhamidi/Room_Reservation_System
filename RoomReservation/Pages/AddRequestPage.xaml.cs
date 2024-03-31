@@ -6,12 +6,13 @@ public partial class AddRequestPage : ContentPage
 {
     private MeetingRoom _selectedRoom;
     private static int _IDassigned = 0;
-    private ReservationRequestManager _reservationRequestManager = ReservationRequestManager.Instance;
+    private ReservationRequestManager _reservationRequestManager;
 
-    public AddRequestPage(MeetingRoom selectedRoom)
+    public AddRequestPage(MeetingRoom selectedRoom, ReservationRequestManager reservationRequestManager)
     {
         InitializeComponent();
         _selectedRoom = selectedRoom;
+        _reservationRequestManager = reservationRequestManager;
         DisplaySelectedRoomDetails();
         BindingContext = selectedRoom;
 

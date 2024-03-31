@@ -6,7 +6,7 @@ namespace RoomReservation.BusinessLogic
 {
     public class ReservationRequestManager
     {
-        private static ReservationRequestManager _instance; //singleton pattern instance
+       
 
         private List<MeetingRoom> _meetingRooms = new List<MeetingRoom>();
         private List<ReservationRequest> _reservationRequests = new List<ReservationRequest>();
@@ -19,23 +19,7 @@ namespace RoomReservation.BusinessLogic
         { 
             get { return _reservationRequests; } 
         }
-        #region Singleton Pattern
-        // Private constructor to prevent instantiation outside this class
-        private ReservationRequestManager() { }
-
-        // Public static method to get the instance
-        public static ReservationRequestManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new ReservationRequestManager();
-                }
-                return _instance;
-            }
-        }
-        #endregion
+      
         public void PopulateMeetingRooms()
         {
             AddMeetingRoom("A101", 18, RoomLayoutType.Classroom, "classroom.webp");

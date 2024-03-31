@@ -8,13 +8,14 @@ namespace RoomReservation.Pages
     public partial class ViewRequestPage : ContentPage
     {
         private MeetingRoom _selectedRoom;
-        private ReservationRequestManager _reservationRequestManager = ReservationRequestManager.Instance;
+        private ReservationRequestManager _reservationRequestManager;
         private ObservableCollection<ReservationRequest> _requestsForDisplay = new ObservableCollection<ReservationRequest>();
 
-        public ViewRequestPage(MeetingRoom selectedRoom)
+        public ViewRequestPage(MeetingRoom selectedRoom, ReservationRequestManager reservationRequestManager)
         {
             InitializeComponent();
             _selectedRoom = selectedRoom;
+            _reservationRequestManager = reservationRequestManager;
             PopulateRequestsForDisplay();
             BindingContext = this;
             SelectedRoomLabel.Text = $"Showing Reservation for Room {_selectedRoom.RoomNumber}";
