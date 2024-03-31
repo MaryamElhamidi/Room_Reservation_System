@@ -24,7 +24,7 @@ public partial class AddRequestPage : ContentPage
         SelectedRoomImage.Source = ImageSource.FromFile(_selectedRoom.RoomImageFileName);
     }
 
-private async void OnAddRequestClicked(object sender, EventArgs e)
+private void OnAddRequestClicked(object sender, EventArgs e)
 {
     try
     {
@@ -44,33 +44,33 @@ private async void OnAddRequestClicked(object sender, EventArgs e)
 
         if (success)
         {
-            await DisplaySuccessAlert(requestId);
+            DisplaySuccessAlert(requestId);
         }
         else
         {
-            await DisplayAlert("Error", "There was a problem adding your reservation request. Please try again.", "OK");
+            DisplayAlert("Error", "There was a problem adding your reservation request. Please try again.", "OK");
         }
     }
     catch (Exception ex)
     {
         // This catches any validation errors from the ReservationRequest constructor.
-        await DisplayAlert("Error", ex.Message, "Ok.");
+        DisplayAlert("Error", ex.Message, "Ok.");
     }
 }
 
-    private async Task DisplaySuccessAlert(int requestId)
+    private void DisplaySuccessAlert(int requestId)
     {
         string formattedStartTime = DateTime.Today.Add(StartTimePicker.Time).ToString("hh:mm tt");
         string formattedEndTime = DateTime.Today.Add(EndTimePicker.Time).ToString("hh:mm tt");
 
-        await DisplayAlert("Success",
+         DisplayAlert("Success",
             $"Your reservation request has been successfully added.\n\n" +
             $"Start Time: {formattedStartTime}\n" +
             $"End Time: {formattedEndTime}\n" +
             $"Request ID: {requestId}", "OK");
     }
-    private async void OnBackToRoomsClicked(object sender, EventArgs e)
+    private void OnBackToRoomsClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        Navigation.PopAsync();
     }
 }

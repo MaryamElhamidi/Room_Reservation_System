@@ -25,25 +25,25 @@ public partial class PickRoomPage : ContentPage
         }
     }
 
-    private async void AddRequestButton_Clicked(object sender, EventArgs e)
+    private void AddRequestButton_Clicked(object sender, EventArgs e)
     {
         if (MeetingRoom == null)
         {
-            await DisplayAlert("Error", "Please select a room first.", "OK");
+            DisplayAlert("Error", "Please select a room first.", "OK");
             return;
         }
 
-        await Navigation.PushAsync(new AddRequestPage(MeetingRoom, _reservationRequestManager));
+        Navigation.PushAsync(new AddRequestPage(MeetingRoom, _reservationRequestManager));
     }
 
-    private async void ViewRequestsButton_Clicked(object sender, EventArgs e)
+    private void ViewRequestsButton_Clicked(object sender, EventArgs e)
     {
         if (MeetingRoom == null)
         {
-            await DisplayAlert("Error", "Please select a room first.", "OK");
+            DisplayAlert("Error", "Please select a room first.", "OK");
             return;
         }
 
-        await Navigation.PushAsync(new ViewRequestPage(MeetingRoom, _reservationRequestManager));
+        Navigation.PushAsync(new ViewRequestPage(MeetingRoom, _reservationRequestManager));
     }
 }

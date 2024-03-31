@@ -38,7 +38,7 @@ namespace RoomReservation.Pages
         }
 
         #region Bonus
-        private async void OnRequestSelected(object sender, SelectedItemChangedEventArgs e)
+        private void OnRequestSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem is ReservationRequest request)
             {
@@ -56,18 +56,18 @@ namespace RoomReservation.Pages
                             $"Time: {formattedStartTime} - {formattedEndTime}\n" +
                             $"Status: {request.Status}";
 
-                bool accept = await DisplayAlert("Reservation Details", message, "Accept", "Reject");
+                bool accept = DisplayAlert("Reservation Details", message, "Accept", "Reject");
 
                 if (accept)
                 {
                     bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Accepted);
                     if (updated)
                     {
-                        await DisplayAlert("Success", "Reservation accepted.", "OK");
+                        DisplayAlert("Success", "Reservation accepted.", "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Failed to update the reservation request.", "OK");
+                        DisplayAlert("Error", "Failed to update the reservation request.", "OK");
                     }
                 }
                 else
@@ -75,11 +75,11 @@ namespace RoomReservation.Pages
                     bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Rejected);
                     if (updated)
                     {
-                        await DisplayAlert("Rejected", "Reservation rejected.", "OK");
+                        DisplayAlert("Rejected", "Reservation rejected.", "OK");
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Failed to update the reservation request.", "OK");
+                        DisplayAlert("Error", "Failed to update the reservation request.", "OK");
                     }
                 }
 
