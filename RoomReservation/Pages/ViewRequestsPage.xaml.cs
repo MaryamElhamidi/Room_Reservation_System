@@ -9,36 +9,34 @@ namespace RoomReservation.Pages
     {
         private MeetingRoom _selectedRoom;
         private ReservationRequestManager _reservationRequestManager;
-        private ObservableCollection<ReservationRequest> _requestsForDisplay = new ObservableCollection<ReservationRequest>();
+        private ObservableCollection<ReservationRequest> _requestsListViewDisplay = new ObservableCollection<ReservationRequest>();
 
         public ViewRequestPage(MeetingRoom selectedRoom, ReservationRequestManager reservationRequestManager)
         {
             InitializeComponent();
             _selectedRoom = selectedRoom;
             _reservationRequestManager = reservationRequestManager;
-            PopulateRequestsForDisplay();
+            LoadRequestsForDisplay();
             BindingContext = this;
             SelectedRoomLabel.Text = $"Showing Reservation for Room {_selectedRoom.RoomNumber}";
-            RequestsListView.ItemsSource = _requestsForDisplay;
+            RequestsListView.ItemsSource = _requestsListViewDisplay;
         }
 
-        private void PopulateRequestsForDisplay()
+        private void LoadRequestsForDisplay()
         {
-            _requestsForDisplay.Clear(); // Clear existing items to refresh the list
+            _requestsListViewDisplay.Clear();
 
-            // Loop through all reservation requests in the manager
-            foreach (var res in _reservationRequestManager.ReservationRequests)
+            foreach (var reservation in _reservationRequestManager.ReservationRequests)
             {
-                // Compare using a unique identifier (e.g., RoomNumber) instead of direct object reference
-                if (res.MeetingRoom.RoomNumber == _selectedRoom.RoomNumber)
+                if (reservation.MeetingRoom.RoomNumber == _selectedRoom.RoomNumber)
                 {
-                    _requestsForDisplay.Add(res);
+                    _requestsListViewDisplay.Add(reservation);
                 }
             }
         }
 
         #region Bonus
-        private void OnRequestSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnRequestSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem is ReservationRequest request)
             {
@@ -56,18 +54,18 @@ namespace RoomReservation.Pages
                             $"Time: {formattedStartTime} - {formattedEndTime}\n" +
                             $"Status: {request.Status}";
 
-                bool accept = DisplayAlert("Reservation Details", message, "Accept", "Reject");
+                bool accept = await DisplayAlert("Reservation Details", message, "Accept", "Reject");
 
                 if (accept)
                 {
                     bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Accepted);
                     if (updated)
                     {
-                        DisplayAlert("Success", "Reservation accepted.", "OK");
+                        await DisplayAlert("Success", "Reservation accepted.", "OK");
                     }
                     else
                     {
-                        DisplayAlert("Error", "Failed to update the reservation request.", "OK");
+                        await DisplayAlert("Error", "Failed to update the reservation request.", "OK");
                     }
                 }
                 else
@@ -75,16 +73,16 @@ namespace RoomReservation.Pages
                     bool updated = _reservationRequestManager.UpdateReservationRequestStatus(request.RequestID, BusinessLogic.RequestStatus.Rejected);
                     if (updated)
                     {
-                        DisplayAlert("Rejected", "Reservation rejected.", "OK");
+                        await DisplayAlert("Rejected", "Reservation rejected.", "OK");
                     }
                     else
                     {
-                        DisplayAlert("Error", "Failed to update the reservation request.", "OK");
+                        await DisplayAlert("Error", "Failed to update the reservation request.", "OK");
                     }
                 }
 
                 // Refresh the list view
-                PopulateRequestsForDisplay();
+                LoadRequestsForDisplay();
             }
         }
         #endregion
