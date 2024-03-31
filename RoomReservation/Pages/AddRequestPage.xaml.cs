@@ -24,65 +24,51 @@ public partial class AddRequestPage : ContentPage
         SelectedRoomImage.Source = ImageSource.FromFile(_selectedRoom.RoomImageFileName);
     }
 
-    private async void OnAddRequestClicked(object sender, EventArgs e)
+private async void OnAddRequestClicked(object sender, EventArgs e)
+{
+    try
     {
-       try
-       { 
-            if (string.IsNullOrWhiteSpace(UserNameEntry.Text) ||
-                string.IsNullOrWhiteSpace(MeetingPurposeEntry.Text) ||
-                !int.TryParse(ParticipantCountEntry.Text, out int participantCount) ||
-                participantCount <= 0)
-            {
-                await DisplayAlert("Error", "Please complete all fields with valid information.", "OK");
-                return;
-            }
+        int requestId = ++_IDassigned;
+        DateTime startTime = DateTime.Today.Add(StartTimePicker.Time);
+        DateTime endTime = DateTime.Today.Add(EndTimePicker.Time);
 
-            if (participantCount > _selectedRoom.SeatingCapacity)
-            {
-                await DisplayAlert("Error", "The number of participants exceeds the room's capacity.", "OK");
-                return;
-            }
+        var success = _reservationRequestManager.AddReservationRequest(
+            UserNameEntry.Text,
+            MeetingPurposeEntry.Text,
+            MeetingDatePicker.Date,
+            StartTimePicker.Time,
+            EndTimePicker.Time,
+            int.Parse(ParticipantCountEntry.Text), // Consider using TryParse if not validated elsewhere.
+            _selectedRoom
+        );
 
-            int requestId = ++_IDassigned;
-
-            DateTime startTime = DateTime.Today.Add(StartTimePicker.Time);
-            DateTime endTime = DateTime.Today.Add(EndTimePicker.Time);
-
-            string formattedStartTime = startTime.ToString("hh:mm tt");
-            string formattedEndTime = endTime.ToString("hh:mm tt");
-
-            var success = _reservationRequestManager.AddReservationRequest(
-                UserNameEntry.Text,
-                MeetingPurposeEntry.Text, 
-                MeetingDatePicker.Date, 
-                StartTimePicker.Time, 
-                EndTimePicker.Time, 
-                participantCount, 
-                _selectedRoom 
-            );
-
-            if (success)
-            {
-                await DisplayAlert("Success",
-                $"Your reservation request has been successfully added.\n\n" +
-                $"Start Time: {formattedStartTime}\n" +
-                $"End Time: {formattedEndTime}\n" +
-                $"Request ID: {requestId}", "OK"); 
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                await DisplayAlert("Error", "There was a problem adding your reservation request. Please try again.", "OK");
-            }
-       }
-
-       catch (Exception ex)
-       {
-            await DisplayAlert("Error", ex.Message, "Ok.");
-       }
-
+        if (success)
+        {
+            await DisplaySuccessAlert(requestId);
+        }
+        else
+        {
+            await DisplayAlert("Error", "There was a problem adding your reservation request. Please try again.", "OK");
+        }
     }
+    catch (Exception ex)
+    {
+        // This catches any validation errors from the ReservationRequest constructor.
+        await DisplayAlert("Error", ex.Message, "Ok.");
+    }
+}
 
+    private async Task DisplaySuccessAlert(int requestId)
+    {
+        string formattedStartTime = DateTime.Today.Add(StartTimePicker.Time).ToString("hh:mm tt");
+        string formattedEndTime = DateTime.Today.Add(EndTimePicker.Time).ToString("hh:mm tt");
+
+        await DisplayAlert("Success",
+            $"Your reservation request has been successfully added.\n\n" +
+            $"Start Time: {formattedStartTime}\n" +
+            $"End Time: {formattedEndTime}\n" +
+            $"Request ID: {requestId}", "OK");
+    }
     private async void OnBackToRoomsClicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
