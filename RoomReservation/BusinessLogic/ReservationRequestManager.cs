@@ -68,13 +68,6 @@ namespace RoomReservation.BusinessLogic
             return _reservationRequests.OrderBy(r => r.RequestID).ToList();
         }
 
-   
-        // Retrieves reservation requests by status
-        public IEnumerable<ReservationRequest> GetRequestsByStatus(RequestStatus status)
-        {
-            return _reservationRequests.Where(r => r.Status == status).ToList();
-        }
-
         #region Bonus
         public bool UpdateReservationRequestStatus(int requestId, RequestStatus newStatus)
         {

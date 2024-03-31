@@ -1,34 +1,34 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/Pages/AddRequestPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/BusinessLogic/ReservationRequestManager.cs">
     <Files>
-      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" Line="21" Column="14" />
-      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" Line="9" Column="60" />
-      <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" Line="1" Column="1" />
-      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" Line="1" Column="1" />
-      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml.cs" Line="20" Column="10" />
+      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" Line="18" Column="1" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" />
+      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" />
+      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml.cs" />
       <File FileName="RoomReservation/Pages/AddRequestPage.xaml.cs" Line="19" Column="1" />
-      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" Line="1" Column="1" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="22" Column="46" />
+      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" />
       <File FileName="RoomReservation/App.xaml.cs" />
-      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" Line="1" Column="1" />
+      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" />
       <File FileName="RoomReservation/App.xaml" />
-      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml" Line="1" Column="1" />
+      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml" />
       <File FileName="../../../../../usr/local/share/dotnet/packs/Microsoft.Android.Sdk.Darwin/33.0.95/tools/Xamarin.Android.Common.Debugging.targets" />
-      <File FileName="../../../../../usr/local/share/dotnet/packs/Microsoft.Maui.Resizetizer.Sdk/7.0.101/targets/Microsoft.Maui.Resizetizer.targets" Line="525" Column="9" />
+      <File FileName="../../../../../usr/local/share/dotnet/packs/Microsoft.Maui.Resizetizer.Sdk/7.0.101/targets/Microsoft.Maui.Resizetizer.targets" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="RoomReservation" selected="True">
-            <Node name="RoomReservation">
-              <Node name="BusinessLogic" expanded="True" />
+          <Node name="RoomReservation">
+            <Node name="RoomReservation" expanded="True">
+              <Node name="BusinessLogic" expanded="True">
+                <Node name="ReservationRequestManager.cs" selected="True" />
+              </Node>
               <Node name="Pages" expanded="True">
                 <Node name="AddRequestPage.xaml" expanded="True" />
-                <Node name="PickRoomPage.xaml" expanded="True" />
-                <Node name="ViewRequestsPage.xaml" expanded="True" />
               </Node>
             </Node>
           </Node>

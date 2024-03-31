@@ -25,7 +25,8 @@ public partial class AddRequestPage : ContentPage
 
     private async void OnAddRequestClicked(object sender, EventArgs e)
     {
-       
+       try
+        { 
             if (string.IsNullOrWhiteSpace(UserNameEntry.Text) ||
                 string.IsNullOrWhiteSpace(MeetingPurposeEntry.Text) ||
                 !int.TryParse(ParticipantCountEntry.Text, out int participantCount) ||
@@ -72,7 +73,12 @@ public partial class AddRequestPage : ContentPage
             {
                 await DisplayAlert("Error", "There was a problem adding your reservation request. Please try again.", "OK");
             }
-        
+        }
+
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "Ok.");
+        }
 
     }
 
