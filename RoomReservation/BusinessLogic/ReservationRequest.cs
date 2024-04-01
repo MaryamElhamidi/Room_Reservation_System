@@ -6,18 +6,18 @@ namespace RoomReservation.BusinessLogic
     public class ReservationRequest
     {
         #region Fields
-        private static int _lastAssignedId = 0;
+        private static int _lastAssignedId = 0; //Explained static int on 1.A
         private string _requestedBy;
         private string _description;
         private DateTime _meetingDate;
-        private TimeSpan _startTime;
+        private TimeSpan _startTime; //Explained TimeSpan on 2.A
         private TimeSpan _endTime;
         private int _participantCount;
         private MeetingRoom _meetingRoom;
         #endregion
 
         #region Properties
-        public int RequestID { get; private set; }
+        public int RequestID { get => _lastAssignedId; init { } }
         public string RequestedBy
         {
             get { return _requestedBy; }
