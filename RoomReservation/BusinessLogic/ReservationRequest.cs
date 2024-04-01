@@ -18,6 +18,7 @@ namespace RoomReservation.BusinessLogic
 
         #region Properties
         public int RequestID { get => _lastAssignedId; init { } }
+
         public string RequestedBy
         {
             get { return _requestedBy; }
@@ -106,15 +107,6 @@ namespace RoomReservation.BusinessLogic
             RequestedBy = requestedBy;
             Description = description;
             MeetingDate = meetingDate;
-
-            // Validate combined DateTime for start and end
-            var startDateTime = meetingDate.Add(startTime);
-            var endDateTime = meetingDate.Add(endTime);
-            if (startDateTime >= endDateTime)
-            {
-                throw new ArgumentException("End time must be after start time.");
-            }
-
             StartTime = startTime;
             EndTime = endTime;
             ParticipantCount = participantCount;
