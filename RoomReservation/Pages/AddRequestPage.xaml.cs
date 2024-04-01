@@ -53,7 +53,7 @@ public partial class AddRequestPage : ContentPage
                 MeetingDatePicker.Date,
                 StartTimePicker.Time,
                 EndTimePicker.Time,
-                int.Parse(ParticipantCountEntry.Text), // Consider using TryParse if not validated elsewhere.
+                int.Parse(ParticipantCountEntry.Text),
                 _selectedRoom
             );
 

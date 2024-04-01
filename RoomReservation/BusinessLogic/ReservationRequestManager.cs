@@ -36,6 +36,7 @@ namespace RoomReservation.BusinessLogic
 
         public void AddMeetingRoom(string roomNumber, int seatingCapacity, RoomLayoutType roomLayoutType, string roomImageFileName)
         {
+            //Explained the Any method in 3.A
             if (!_meetingRooms.Any(r => r.RoomNumber == roomNumber)) // Check if a meeting room with the same number already exists
             {
                 _meetingRooms.Add(new MeetingRoom(roomNumber, seatingCapacity, roomLayoutType, roomImageFileName));
@@ -66,11 +67,11 @@ namespace RoomReservation.BusinessLogic
         public bool UpdateReservationRequestStatus(int requestId, RequestStatus newStatus)
         {
             ReservationRequest request = null;
-            foreach (var r in _reservationRequests)
+            foreach (var requests in _reservationRequests)
             {
-                if (r.RequestID == requestId)
+                if (requests.RequestID == requestId)
                 {
-                    request = r;
+                    request = requests;
                     break; // Exit the loop once we find the matching request
                 }
             }
@@ -94,6 +95,7 @@ namespace RoomReservation.BusinessLogic
         // Method to check if a reservation request can be accepted without conflicts
         public bool CanAcceptRequest(ReservationRequest requestToCheck)
         {
+            //Explained Any method on 3.A
             return !_reservationRequests.Any(existingRequest =>
                 existingRequest.MeetingRoom.RoomNumber == requestToCheck.MeetingRoom.RoomNumber &&
                 existingRequest.MeetingDate == requestToCheck.MeetingDate &&

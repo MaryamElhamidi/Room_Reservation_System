@@ -32,7 +32,7 @@ namespace RoomReservation.Pages
         private void RoomsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             // Retrieve the selected meeting room
-            _selectedRoom = e.SelectedItem as MeetingRoom;
+            _selectedRoom = e.SelectedItem as MeetingRoom; //Explained e.SelectedItem in 4.A in my report
 
             // If a meeting room is selected, display its image
             if (_selectedRoom != null)
