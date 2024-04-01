@@ -1,17 +1,17 @@
 ﻿<Properties StartupConfiguration="{7C243D93-0601-4B58-864B-DA180F70ECBB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/Pages/AddRequestPage.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RoomReservation/BusinessLogic/ReservationRequest.cs">
     <Files>
-      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" Line="97" Column="41" />
+      <File FileName="RoomReservation/BusinessLogic/ReservationRequestManager.cs" />
       <File FileName="RoomReservation/BusinessLogic/ReservationRequest.cs" Line="144" Column="19" />
-      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" Line="1" Column="1" />
-      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" Line="50" Column="1" />
-      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml" Line="1" Column="1" />
-      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml.cs" Line="56" Column="14" />
+      <File FileName="RoomReservation/BusinessLogic/RequestStatus.cs" />
+      <File FileName="RoomReservation/BusinessLogic/MeetingRoom.cs" Line="20" Column="87" />
+      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml" />
+      <File FileName="RoomReservation/Pages/ViewRequestsPage.xaml.cs" Line="16" Column="1" />
       <File FileName="RoomReservation/Pages/AddRequestPage.xaml.cs" Line="36" Column="71" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" Line="41" Column="1" />
-      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="1" Column="1" />
-      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" Line="4" Column="1" />
-      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" Line="1" Column="1" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml.cs" Line="40" Column="47" />
+      <File FileName="RoomReservation/Pages/PickRoomPage.xaml" Line="7" Column="1" />
+      <File FileName="RoomReservation/BusinessLogic/RoomLayoutType.cs" />
+      <File FileName="RoomReservation/Pages/AddRequestPage.xaml" />
       <File FileName="RoomReservation/App.xaml.cs" Line="1" Column="1" />
       <File FileName="RoomReservation/App.xaml" Line="1" Column="1" />
     </Files>
@@ -20,10 +20,11 @@
         <State name="__root__">
           <Node name="RoomReservation">
             <Node name="RoomReservation">
+              <Node name="BusinessLogic" expanded="True">
+                <Node name="ReservationRequest.cs" selected="True" />
+              </Node>
               <Node name="Pages" expanded="True">
-                <Node name="AddRequestPage.xaml" expanded="True">
-                  <Node name="AddRequestPage.xaml.cs" selected="True" />
-                </Node>
+                <Node name="AddRequestPage.xaml" expanded="True" />
                 <Node name="PickRoomPage.xaml" expanded="True" />
                 <Node name="ViewRequestsPage.xaml" expanded="True" />
               </Node>

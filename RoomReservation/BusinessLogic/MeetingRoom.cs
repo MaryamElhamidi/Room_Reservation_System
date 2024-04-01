@@ -17,8 +17,9 @@ namespace RoomReservation.BusinessLogic
         public RoomLayoutType LayoutType
         {
             get { return _layoutType; }
-            init { } //Added this so I can use it in my constructor because it is a read only property.
+            init { } //Added this so I can use it in my constructor because otherwise it is a read only property.
         }
+
         // Gets the room image file name of the meeting room.
         public string RoomImageFileName
         {
