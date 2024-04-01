@@ -8,13 +8,30 @@ namespace RoomReservation.BusinessLogic
         #region Fields
         private string _roomNumber;
         private int _seatingCapacity;
+        private RoomLayoutType _layoutType;
+        private string _roomImageFileName;
         #endregion
 
         #region Properties
         // Gets the layout type of the meeting room.
-        public RoomLayoutType LayoutType { get; private set; }
-        // Gets the file name of the room image.
-        public string RoomImageFileName { get; private set; }
+        public RoomLayoutType LayoutType
+        {
+            get { return _layoutType; }
+            init { } //Added this so I can use it in my constructor because it is a read only property.
+        }
+        // Gets the room image file name of the meeting room.
+        public string RoomImageFileName
+        {
+            get { return _roomImageFileName; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(value), "The file name of the room image cannot be null or empty.");
+                }
+                _roomImageFileName = value;
+            }
+        }
 
         public string RoomNumber
         {
@@ -66,7 +83,7 @@ namespace RoomReservation.BusinessLogic
         {
             RoomNumber = roomNumber;
             SeatingCapacity = seatingCapacity;
-            LayoutType = layoutType;
+            _layoutType = layoutType;
             RoomImageFileName = roomImageFileName;
         }
 
