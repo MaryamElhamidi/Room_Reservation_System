@@ -95,6 +95,7 @@ namespace RoomReservation.BusinessLogic
             get { return _meetingRoom; }
             set
             {
+                //Checks if it is nullable.
                 _meetingRoom = value ?? throw new ArgumentException("You must provide a valid meeting room.");
             }
         }

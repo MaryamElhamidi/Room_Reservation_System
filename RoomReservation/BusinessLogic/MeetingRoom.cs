@@ -18,6 +18,7 @@ namespace RoomReservation.BusinessLogic
         {
             get { return _layoutType; }
             init { } //Added this so I can use it in my constructor because otherwise it is a read only property.
+            //init explained: It is a keyword instead of set, only time I want to set something only in the constuctor.
         }
 
         // Gets the room image file name of the meeting room.
