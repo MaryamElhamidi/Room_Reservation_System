@@ -2,11 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:RoomReservation.BusinessLogic" 
-             x:Class="RoomReservation.Pages.PickRoomPage"
-             Title="Pick Meeting Room">
+             x:Class="RoomReservation.Pages.PickRoomPage">
 
     <ContentPage.Content>
         <StackLayout Padding="10" Spacing="10">
+            <!-- Title -->
+            <Label Text="Pick Meeting Room"
+                   Style="{StaticResource GlobalLabelStyle}"
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
             <!-- Room Image -->
             <Image x:Name="RoomImage"
                    Aspect="AspectFit"
