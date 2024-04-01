@@ -7,7 +7,7 @@ namespace RoomReservation.Pages
     {
         #region Fields
         // Field to store the selected meeting room
-        private MeetingRoom MeetingRoom;
+        private MeetingRoom _selectedRoom;
 
         // Manager for handling reservation requests
         private ReservationRequestManager _reservationRequestManager = new ReservationRequestManager();
@@ -32,12 +32,12 @@ namespace RoomReservation.Pages
         private void RoomsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             // Retrieve the selected meeting room
-            MeetingRoom = e.SelectedItem as MeetingRoom;
+            _selectedRoom = e.SelectedItem as MeetingRoom;
 
             // If a meeting room is selected, display its image
-            if (MeetingRoom != null)
+            if (_selectedRoom != null)
             {
-                RoomImage.Source = MeetingRoom.RoomImageFileName;
+                RoomImage.Source = _selectedRoom.RoomImageFileName;
             }
         }
 
@@ -45,7 +45,7 @@ namespace RoomReservation.Pages
         private void AddRequestButton_Clicked(object sender, EventArgs e)
         {
             // Check if a room is selected
-            if (MeetingRoom == null)
+            if (_selectedRoom == null)
             {
                 // Display an error message if no room is selected
                 DisplayAlert("Error", "Please select a room first.", "OK");
@@ -53,14 +53,14 @@ namespace RoomReservation.Pages
             }
 
             // Navigate to the AddRequestPage and pass the selected room and reservation manager
-            Navigation.PushAsync(new AddRequestPage(MeetingRoom, _reservationRequestManager));
+            Navigation.PushAsync(new AddRequestPage(_selectedRoom, _reservationRequestManager));
         }
 
         // Event handler for when the "View Requests" button is clicked
         private void ViewRequestsButton_Clicked(object sender, EventArgs e)
         {
             // Check if a room is selected
-            if (MeetingRoom == null)
+            if (_selectedRoom == null)
             {
                 // Display an error message if no room is selected
                 DisplayAlert("Error", "Please select a room first.", "OK");
@@ -68,7 +68,7 @@ namespace RoomReservation.Pages
             }
 
             // Navigate to the ViewRequestPage and pass the selected room and reservation manager
-            Navigation.PushAsync(new ViewRequestPage(MeetingRoom, _reservationRequestManager));
+            Navigation.PushAsync(new ViewRequestPage(_selectedRoom, _reservationRequestManager));
         }
         #endregion
     }
