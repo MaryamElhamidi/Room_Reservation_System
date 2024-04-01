@@ -88,6 +88,7 @@ namespace RoomReservation.BusinessLogic
         }
 
         // Property for request status
+        // Initialized to the value "RequestStatus.Pending", so that by default, the status of an instance of the class will be set to "Pending" unless explicitly changed.
         public RequestStatus Status { get; set; } = RequestStatus.Pending;
 
         public MeetingRoom MeetingRoom

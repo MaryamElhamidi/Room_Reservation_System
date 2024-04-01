@@ -19,6 +19,7 @@ namespace RoomReservation.BusinessLogic
             get { return _layoutType; }
             init { } //Added this so I can use it in my constructor because otherwise it is a read only property.
             //init explained: It is a keyword instead of set, only time I want to set something only in the constuctor.
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-9.0/init 
         }
 
         // Gets the room image file name of the meeting room.
@@ -60,16 +61,6 @@ namespace RoomReservation.BusinessLogic
                 _seatingCapacity = value;
             }
         }
-
-        public string RoomTypeIcon
-        {
-            get { return $"{LayoutType.ToString().ToLower()}1.png"; }
-        }
-
-
-        public string RoomImageFile => $"{LayoutType}".ToLower() + ".png";
-
-        public string LayoutTypeDisplay => LayoutType.ToString();
         #endregion
 
         #region Constructors
@@ -89,6 +80,17 @@ namespace RoomReservation.BusinessLogic
             RoomImageFileName = roomImageFileName;
         }
 
+        #endregion
+
+        #region Methods
+        public string RoomTypeIcon
+        {
+            get { return $"{LayoutType.ToString().ToLower()}1.png"; }
+        }
+
+        public string RoomImageFile => $"{LayoutType}".ToLower() + ".png";
+
+        public string LayoutTypeDisplay => LayoutType.ToString();
         #endregion
     }
 }
