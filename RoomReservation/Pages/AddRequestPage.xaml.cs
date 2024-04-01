@@ -41,8 +41,7 @@ public partial class AddRequestPage : ContentPage
     {
         try
         {
-            // Generate a unique request ID and extract start and end times
-            int requestId = ++_IDassigned;
+            // Extract start and end times
             DateTime startTime = DateTime.Today.Add(StartTimePicker.Time);
             DateTime endTime = DateTime.Today.Add(EndTimePicker.Time);
 
@@ -60,6 +59,8 @@ public partial class AddRequestPage : ContentPage
             // Display success or error message based on request addition success
             if (success)
             {
+                // Increment ID only on successful addition
+                int requestId = ++_IDassigned;
                 DisplaySuccessAlert(requestId);
             }
             else

@@ -49,12 +49,21 @@ namespace RoomReservation.BusinessLogic
 
         public bool AddReservationRequest(string requestedBy, string description, DateTime meetingDate, TimeSpan startTime, TimeSpan endTime, int participantCount, MeetingRoom meetingRoom)
         {
-            if (meetingRoom == null || meetingRoom.SeatingCapacity < participantCount)
+            if (meetingRoom == null)
             {
-                return false; // Return false if the meeting room is invalid or does not have enough capacity
+                throw new ArgumentException("The specified meeting room does not exist.");
             }
 
-            // Create a new reservation request and add it to the list
+            if (participantCount > meetingRoom.SeatingCapacity)
+            {
+                throw new ArgumentException("The number of participants exceeds the room's seating capacity.");
+            }
+            else if (participantCount <= 0)
+            {
+                throw new ArgumentException("The participant count must be greater than 0.");
+            }
+
+            // Proceed with creating and adding the reservation request if validations pass
             var request = new ReservationRequest(requestedBy, description, meetingDate, startTime, endTime, participantCount, meetingRoom);
             _reservationRequests.Add(request);
             return true;
